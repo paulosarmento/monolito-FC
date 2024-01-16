@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import ProductModel from "./product.model";
+import ProductRepository from "./product.repository";
 
 describe("ProductRepository test", () => {
   let sequelize: Sequelize;
@@ -30,7 +31,7 @@ describe("ProductRepository test", () => {
       description: "Product 2 description",
       salesPrice: 200,
     });
-    const productRepository = await ProductRepository();
+    const productRepository = new ProductRepository();
     const products = await productRepository.findAll();
 
     expect(products.length).toBe(2);
