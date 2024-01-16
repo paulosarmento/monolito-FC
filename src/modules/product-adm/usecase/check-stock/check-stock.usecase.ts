@@ -7,6 +7,7 @@ export default class CheckStockUseCase {
   constructor(productRepository: ProductGateway) {
     this._productRepository = productRepository;
   }
+
   async execute(input: CheckStockInputDto): Promise<CheckStockOutputDto> {
     const product = await this._productRepository.find(input.productId);
     return {

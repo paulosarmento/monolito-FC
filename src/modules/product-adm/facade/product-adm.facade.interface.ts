@@ -5,9 +5,11 @@ export interface AddProductFacadeInputDto {
   purchasePrice: number;
   stock: number;
 }
+
 export interface CheckStockFacadeInputDto {
   productId: string;
 }
+
 export interface CheckStockFacadeOutputDto {
   productId: string;
   stock: number;
