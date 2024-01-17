@@ -1,0 +1,29 @@
+import UseCaseInterface from "../../@shared/usecase/use-case.interface";
+import ClientAdmFacadeInterface, {
+  AddClientFacadeInputDto,
+  FindClientFacadeInputDto,
+  FindClientFacadeOutputDto,
+} from "./client-adm.facade.interface";
+
+export interface UseCaseProps {
+  addUseCase: UseCaseInterface;
+  findUseCase: UseCaseInterface;
+}
+
+export default class ClientAdmFacade implements ClientAdmFacadeInterface {
+  private _addUseCase: UseCaseInterface;
+  private _findUseCase: UseCaseInterface;
+
+  constructor(usecasesProps: UseCaseProps) {
+    this._addUseCase = usecasesProps.addUseCase;
+    this._findUseCase = usecasesProps.findUseCase;
+  }
+  async add(input: AddClientFacadeInputDto): Promise<void> {
+    await this._addUseCase.execute(input);
+  }
+  async find(
+    input: FindClientFacadeInputDto
+  ): Promise<FindClientFacadeOutputDto> {
+    throw new Error("Method not implemented.");
+  }
+}
