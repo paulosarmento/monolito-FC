@@ -3,6 +3,7 @@ import TransactionModel from "../repository/transaction.model";
 import PaymentFacade from "./payment.facade";
 import ProcessPaymentUseCase from "../usecase/process-payment/process-payment.usecase";
 import TransactionRepository from "../repository/transaction.repository";
+import PaymentFacadeFactory from "../factory/payment.facade.factory";
 
 describe("PaymentFacade test", () => {
   let sequelize: Sequelize;
@@ -21,10 +22,10 @@ describe("PaymentFacade test", () => {
     await sequelize.close();
   });
   it("Should create a transaction", async () => {
-    const transactionRepository = new TransactionRepository();
-    const useCase = new ProcessPaymentUseCase(transactionRepository);
-    const facade = new PaymentFacade(useCase);
-
+    // const transactionRepository = new TransactionRepository();
+    // const useCase = new ProcessPaymentUseCase(transactionRepository);
+    // const facade = new PaymentFacade(useCase);
+    const facade = PaymentFacadeFactory.create();
     const input = {
       orderId: "1",
       amount: 100,
