@@ -14,8 +14,8 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
     if (!client) {
       throw new Error("Client not found");
     }
-
     // validar produto // funcao a parte
+    await this.validateProducts(input);
     // recuperar os produtos
 
     // criar o objeto do cliente
@@ -34,5 +34,11 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
       total: 0,
       products: [],
     };
+  }
+
+  private async validateProducts(input: PlaceOrderInputDto): Promise<void> {
+    if (input.products.length === 0) {
+      throw new Error("No products selected");
+    }
   }
 }
