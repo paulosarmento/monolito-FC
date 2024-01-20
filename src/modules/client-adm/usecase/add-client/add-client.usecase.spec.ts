@@ -15,7 +15,13 @@ describe("AddClientUsecase unit test", () => {
     const input = {
       name: "Client 1",
       email: "email",
-      address: "address",
+      document: "document",
+      street: "street",
+      number: "number",
+      complement: "complement",
+      city: "city",
+      state: "state",
+      zipCode: "zipCode",
     };
 
     const result = await useCase.execute(input);
@@ -23,6 +29,12 @@ describe("AddClientUsecase unit test", () => {
     expect(result.id).toBeDefined();
     expect(result.name).toBe(input.name);
     expect(result.email).toBe(input.email);
-    expect(result.address).toBe(input.address);
+    expect(result.document).toBe(input.document);
+    expect(result.street).toBe(input.street);
+    expect(result.number).toBe(input.number);
+    expect(result.complement).toBe(input.complement);
+    expect(result.city).toBe(input.city);
+    expect(result.state).toBe(input.state);
+    expect(result.zipCode).toBe(input.zipCode);
   });
 });
