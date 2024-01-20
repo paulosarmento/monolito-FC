@@ -166,7 +166,7 @@ describe("PlaceOrderUseCase unit test", () => {
 
     describe("Place an order", () => {
       const clientProps = {
-        id: "1",
+        id: "1c",
         name: "Client 1",
         document: "0000",
         email: "a@a.com",
@@ -236,7 +236,7 @@ describe("PlaceOrderUseCase unit test", () => {
 
       it("Should not be approved", async () => {
         mockPaymentFacade.process = mockPaymentFacade.process.mockReturnValue({
-          transactionId: "1",
+          transactionId: "1t",
           orderId: "1o",
           amount: 10,
           status: "error",
@@ -245,7 +245,7 @@ describe("PlaceOrderUseCase unit test", () => {
         });
 
         const input: PlaceOrderInputDto = {
-          clientId: "1",
+          clientId: "1c",
           products: [
             {
               productId: "1",
@@ -270,7 +270,7 @@ describe("PlaceOrderUseCase unit test", () => {
         ]);
         expect(mockClientFacade.find).toHaveBeenCalledTimes(1);
         expect(mockClientFacade.find).toHaveBeenCalledWith({
-          id: "1",
+          id: "1c",
         });
         expect(mockValidateProducts).toHaveBeenCalledTimes(1);
         expect(mockValidateProducts).toHaveBeenCalledWith(input);
@@ -282,6 +282,76 @@ describe("PlaceOrderUseCase unit test", () => {
           amount: output.total,
         });
         expect(mockInvoiceFacade.generate).toHaveBeenCalledTimes(0);
+      });
+      it("Should be approved", async () => {
+        mockPaymentFacade.process = mockPaymentFacade.process.mockReturnValue({
+          transactionId: "1t",
+          orderId: "1o",
+          amount: 10,
+          status: "approved",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+
+        const input: PlaceOrderInputDto = {
+          clientId: "1c",
+          products: [
+            {
+              productId: "1",
+            },
+            {
+              productId: "2",
+            },
+          ],
+        };
+
+        let output = await placeOrderUseCase.execute(input);
+
+        expect(output.invoiceId).toBe("1i");
+        expect(output.total).toBe(30);
+        expect(output.products).toStrictEqual([
+          {
+            productId: "1",
+          },
+          {
+            productId: "2",
+          },
+        ]);
+        expect(mockClientFacade.find).toHaveBeenCalledTimes(1);
+        expect(mockClientFacade.find).toHaveBeenCalledWith({
+          id: "1c",
+        });
+        expect(mockValidateProducts).toHaveBeenCalledTimes(1);
+        expect(mockGetProduct).toHaveBeenCalledTimes(2);
+        expect(mockCheckoutRepository.addOrder).toHaveBeenCalledTimes(1);
+        expect(mockPaymentFacade.process).toHaveBeenCalledTimes(1);
+        expect(mockPaymentFacade.process).toHaveBeenCalledWith({
+          orderId: output.id,
+          amount: output.total,
+        });
+        expect(mockInvoiceFacade.generate).toHaveBeenCalledTimes(1);
+        expect(mockInvoiceFacade.generate).toHaveBeenCalledWith({
+          name: clientProps.name,
+          document: clientProps.document,
+          street: clientProps.street,
+          number: clientProps.number,
+          complement: clientProps.complement,
+          city: clientProps.city,
+          state: clientProps.state,
+          zipCode: clientProps.zipCode,
+          items: [
+            {
+              id: products["1"].id.id,
+              name: products["1"].name,
+              price: products["1"].salesPrice,
+            },
+            {
+              id: products["2"].id.id,
+              name: products["2"].name,
+              price: products["2"].salesPrice,
+            },
+          ],
+        });
       });
     });
   });
