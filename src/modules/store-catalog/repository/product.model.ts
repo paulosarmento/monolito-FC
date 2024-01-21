@@ -1,5 +1,6 @@
 import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
 @Table({
+  modelName: "product-store-table",
   tableName: "products",
   timestamps: false,
 })

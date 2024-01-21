@@ -45,5 +45,4 @@ export default class InvoiceModel extends Model {
 
   @Column({ allowNull: false })
   createdAt: Date;
-  createdInvoice: any;
 }
