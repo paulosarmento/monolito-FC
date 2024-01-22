@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
 import OrderModel from "./order.model";
-import ProductModel from "./product.model";
 import CheckoutRepository from "./checkout.repository";
 import Order from "../domain/order.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Client from "../domain/client.entity";
 import Product from "../domain/product.entity";
-import { ClientModel } from "./client.model";
+import { ClientCheckoutModel } from "./client.model";
+import ProductCheckoutModel from "./product.model";
 
 describe("CheckoutRepository test", () => {
   let sequelize: Sequelize;
@@ -18,7 +18,11 @@ describe("CheckoutRepository test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([OrderModel, ClientModel, ProductModel]);
+    await sequelize.addModels([
+      OrderModel,
+      ClientCheckoutModel,
+      ProductCheckoutModel,
+    ]);
     await sequelize.sync();
   });
   afterEach(async () => {
@@ -61,7 +65,7 @@ describe("CheckoutRepository test", () => {
     await checkoutRepository.addOrder(order);
     const orderModel = await OrderModel.findOne({
       where: { id: "1o" },
-      include: [ClientModel, ProductModel],
+      include: [ClientCheckoutModel, ProductCheckoutModel],
     });
 
     expect(orderModel.toJSON()).toStrictEqual({
@@ -153,7 +157,7 @@ describe("CheckoutRepository test", () => {
         updatedAt: new Date(),
       },
       {
-        include: [ClientModel, ProductModel],
+        include: [ClientCheckoutModel, ProductCheckoutModel],
       }
     );
     const checkoutRepository = new CheckoutRepository();

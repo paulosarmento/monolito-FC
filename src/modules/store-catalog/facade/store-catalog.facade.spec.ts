@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import ProductModel from "../repository/product.model";
+import ProductStoreModel from "../repository/product.model";
 import StoreCatalogFacadeFactory from "../factory/facade.factory";
 
 describe("StoreCatalogFacade test", () => {
@@ -12,7 +12,7 @@ describe("StoreCatalogFacade test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([ProductModel]);
+    await sequelize.addModels([ProductStoreModel]);
     await sequelize.sync();
   });
   afterEach(async () => {
@@ -20,7 +20,7 @@ describe("StoreCatalogFacade test", () => {
   });
   it("Should find a product", async () => {
     const facade = await StoreCatalogFacadeFactory.create();
-    await ProductModel.create({
+    await ProductStoreModel.create({
       id: "1",
       name: "Product 1",
       description: "Product 1 description",
@@ -35,13 +35,13 @@ describe("StoreCatalogFacade test", () => {
   });
   it("Should find all products", async () => {
     const facade = await StoreCatalogFacadeFactory.create();
-    await ProductModel.create({
+    await ProductStoreModel.create({
       id: "1",
       name: "Product 1",
       description: "Product 1 description",
       salesPrice: 100,
     });
-    await ProductModel.create({
+    await ProductStoreModel.create({
       id: "2",
       name: "Product 2",
       description: "Product 2 description",

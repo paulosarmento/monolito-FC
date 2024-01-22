@@ -1,6 +1,4 @@
 import express, { Request, Response } from "express";
-import FindInvoiceUseCase from "../../../modules/invoice/usecase/find-invoice/find-invoice.usecase";
-import InvoiceRepository from "../../../modules/invoice/repository/invoice.repository";
 export const invoiceRoute = express.Router();
 
 invoiceRoute.get("/", async (req: Request, res: Response) => {

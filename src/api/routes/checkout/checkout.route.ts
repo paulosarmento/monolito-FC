@@ -1,6 +1,4 @@
 import express, { Request, Response } from "express";
-import CheckoutRepository from "../../../modules/checkout/repository/checkout.repository";
-import PlaceOrderUseCase from "../../../modules/checkout/usecase/place-order/place-order.usecase";
 export const checkoutRoute = express.Router();
 
 checkoutRoute.post("/", async (req: Request, res: Response) => {

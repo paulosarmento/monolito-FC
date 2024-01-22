@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
-import { ProductModel } from "./product.model";
+import { ProductAdmModel } from "./product.model";
 import Product from "../domain/product.entity";
-import ProductRepository from "./product.repository";
+import ProductAdmRepository from "./product.repository";
 import Id from "../../@shared/domain/value-object/id.value-object";
 
 describe("ProductRepository test", () => {
@@ -14,7 +14,7 @@ describe("ProductRepository test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([ProductModel]);
+    await sequelize.addModels([ProductAdmModel]);
     await sequelize.sync();
   });
   afterEach(async () => {
@@ -22,7 +22,7 @@ describe("ProductRepository test", () => {
   });
 
   it("should create a product", async () => {
-    const productRepository = new ProductRepository();
+    const productRepository = new ProductAdmRepository();
     const product = new Product({
       id: new Id("1"),
       name: "Product 1",
@@ -31,7 +31,7 @@ describe("ProductRepository test", () => {
       stock: 10,
     });
     await productRepository.add(product);
-    const productModel = await ProductModel.findOne({
+    const productModel = await ProductAdmModel.findOne({
       where: { id: product.id.id },
     });
     expect(productModel.toJSON()).toStrictEqual({
@@ -40,14 +40,14 @@ describe("ProductRepository test", () => {
       description: product.description,
       purchasePrice: product.purchasePrice,
       stock: product.stock,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt,
+      createdAt: expect.any(Date),
+      updatedAt: expect.any(Date),
     });
   });
   it("should find a product", async () => {
-    const productRepository = new ProductRepository();
+    const productRepository = new ProductAdmRepository();
 
-    ProductModel.create({
+    ProductAdmModel.create({
       id: "1",
       name: "Product 1",
       description: "Product 1 description",

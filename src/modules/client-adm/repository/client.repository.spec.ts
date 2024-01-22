@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { ClientModel } from "./client.model";
+import { ClientAdmModel } from "./client.model";
 import ClientRepository from "./client.repository";
 import Client from "../domain/client.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
@@ -14,7 +14,7 @@ describe("ClientRepository test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([ClientModel]);
+    await sequelize.addModels([ClientAdmModel]);
     await sequelize.sync();
   });
   afterEach(async () => {
@@ -40,7 +40,7 @@ describe("ClientRepository test", () => {
 
     await clientRepository.add(client);
 
-    const clientDb = await ClientModel.findOne({
+    const clientDb = await ClientAdmModel.findOne({
       where: {
         id: "1",
       },
@@ -61,7 +61,7 @@ describe("ClientRepository test", () => {
   });
 
   it("should find a client", async () => {
-    const client = await ClientModel.create({
+    const client = await ClientAdmModel.create({
       id: "1",
       name: "Client 1",
       email: "email",

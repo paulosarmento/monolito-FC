@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
-import ProductModel from "./product.model";
-import ProductRepository from "./product.repository";
+import ProductStoreModel from "./product.model";
+import ProductStoreRepository from "./product.repository";
 
 describe("ProductRepository test", () => {
   let sequelize: Sequelize;
@@ -12,26 +12,26 @@ describe("ProductRepository test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([ProductModel]);
+    await sequelize.addModels([ProductStoreModel]);
     await sequelize.sync();
   });
   afterEach(async () => {
     await sequelize.close();
   });
   it("should create a product", async () => {
-    await ProductModel.create({
+    await ProductStoreModel.create({
       id: "1",
       name: "Product 1",
       description: "Product 1 description",
       salesPrice: 100,
     });
-    await ProductModel.create({
+    await ProductStoreModel.create({
       id: "2",
       name: "Product 2",
       description: "Product 2 description",
       salesPrice: 200,
     });
-    const productRepository = new ProductRepository();
+    const productRepository = new ProductStoreRepository();
     const products = await productRepository.findAll();
 
     expect(products.length).toBe(2);
@@ -46,14 +46,14 @@ describe("ProductRepository test", () => {
     expect(products[1].salesPrice).toBe(200);
   });
   it("Should find a product", async () => {
-    await ProductModel.create({
+    await ProductStoreModel.create({
       id: "1",
       name: "Product 1",
       description: "Product 1 description",
       salesPrice: 100,
     });
 
-    const productRepository = new ProductRepository();
+    const productRepository = new ProductStoreRepository();
     const product = await productRepository.find("1");
     expect(product.id.id).toBe("1");
     expect(product.name).toBe("Product 1");

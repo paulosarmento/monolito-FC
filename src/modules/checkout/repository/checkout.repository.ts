@@ -1,17 +1,16 @@
 import Id from "../../@shared/domain/value-object/id.value-object";
-import ClientCheckout from "../domain/client.entity";
 import Client from "../domain/client.entity";
 import Order from "../domain/order.entity";
 import Product from "../domain/product.entity";
 import CheckoutGateway from "../gateway/checkout.gateway";
-import { ClientModel } from "./client.model";
+import { ClientCheckoutModel } from "./client.model";
 
 import OrderModel from "./order.model";
-import ProductModel from "./product.model";
+import ProductCheckoutModel from "./product.model";
 
 export default class CheckoutRepository implements CheckoutGateway {
   async add(product: Product): Promise<void> {
-    await ProductModel.create({
+    await ProductCheckoutModel.create({
       id: product.id.id,
       name: product.name,
       description: product.description,
@@ -50,7 +49,7 @@ export default class CheckoutRepository implements CheckoutGateway {
         updatedAt: new Date(),
       },
       {
-        include: [ClientModel, ProductModel],
+        include: [ClientCheckoutModel, ProductCheckoutModel],
       }
     );
     const result = new Order({
@@ -88,7 +87,7 @@ export default class CheckoutRepository implements CheckoutGateway {
   async findOrder(id: string): Promise<Order> {
     const order = await OrderModel.findOne({
       where: { id: "1o" },
-      include: [ClientModel, ProductModel],
+      include: [ClientCheckoutModel, ProductCheckoutModel],
     });
 
     if (!order) {

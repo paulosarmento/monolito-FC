@@ -1,7 +1,6 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Invoice from "../../domain/invoice.entity";
-import Product from "../../domain/invoice.items.entity";
-// import InvoiceItems from "../../domain/invoice.items.entity";
+import Product from "../../domain/product.entity";
 import Address from "../../value-object/address";
 import FindInvoiceUseCase from "./find-invoice.usecase";
 

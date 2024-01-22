@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { ClientModel } from "../repository/client.model";
+import { ClientAdmModel } from "../repository/client.model";
 import ClientRepository from "../repository/client.repository";
 import AddClientUseCase from "../usecase/add-client/add-client.usecase";
 import ClientAdmFacade from "./client-adm.facade";
@@ -15,7 +15,7 @@ describe("ClientAdmFacade test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([ClientModel]);
+    await sequelize.addModels([ClientAdmModel]);
     await sequelize.sync();
   });
   afterEach(async () => {
@@ -42,7 +42,7 @@ describe("ClientAdmFacade test", () => {
       zipCode: "zipCode",
     };
     await facade.add(input);
-    const client = await ClientModel.findOne({ where: { id: "1" } });
+    const client = await ClientAdmModel.findOne({ where: { id: "1" } });
     expect(client).toBeDefined();
     expect(client.name).toBe(input.name);
     expect(client.email).toBe(input.email);

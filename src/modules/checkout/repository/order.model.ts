@@ -5,8 +5,8 @@ import {
   Table,
   HasMany,
 } from "sequelize-typescript";
-import ProductModel from "./product.model";
-import { ClientModel } from "./client.model";
+import { ClientCheckoutModel } from "./client.model";
+import ProductCheckoutModel from "./product.model";
 
 @Table({ tableName: "orders", timestamps: false })
 export default class OrderModel extends Model {
@@ -14,11 +14,11 @@ export default class OrderModel extends Model {
   @Column({ allowNull: false })
   id: string;
 
-  @HasMany(() => ClientModel, { foreignKey: "orderId" })
-  client: ClientModel[];
+  @HasMany(() => ClientCheckoutModel, { foreignKey: "orderId" })
+  client: ClientCheckoutModel[];
 
-  @HasMany(() => ProductModel, { foreignKey: "orderId" })
-  products: ProductModel[];
+  @HasMany(() => ProductCheckoutModel, { foreignKey: "orderId" })
+  products: ProductCheckoutModel[];
 
   @Column({ allowNull: false })
   status: string;

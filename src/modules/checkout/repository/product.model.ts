@@ -13,7 +13,7 @@ import OrderModel from "./order.model";
   tableName: "products",
   timestamps: false,
 })
-export default class ProductModel extends Model {
+export default class ProductCheckoutModel extends Model {
   @PrimaryKey
   @Column({ allowNull: false })
   id: string;

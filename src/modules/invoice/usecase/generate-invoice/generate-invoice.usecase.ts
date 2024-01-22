@@ -1,6 +1,6 @@
 import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
 import Invoice from "../../domain/invoice.entity";
-import InvoiceItems from "../../domain/invoice.items.entity";
+import Product from "../../domain/product.entity";
 import InvoiceGateway from "../../gateway/invoice.gateway";
 import Address from "../../value-object/address";
 import {
@@ -27,7 +27,7 @@ export default class GenerateInvoiceUseCase implements UseCaseInterface {
       document: input.document,
       address: address,
       items: input.items.map((item) => {
-        return new InvoiceItems({
+        return new Product({
           name: item.name,
           price: item.price,
         });

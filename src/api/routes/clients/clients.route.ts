@@ -1,6 +1,4 @@
 import express, { Request, Response } from "express";
-import AddClientUseCase from "../../../modules/client-adm/usecase/add-client/add-client.usecase";
-import ClientRepository from "../../../modules/client-adm/repository/client.repository";
 export const clientsRoute = express.Router();
 
 clientsRoute.post("/", async (req: Request, res: Response) => {

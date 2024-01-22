@@ -5,7 +5,7 @@ import {
   Table,
   HasMany,
 } from "sequelize-typescript";
-import ItemModel from "./item.model";
+import ProductInvoiceModel from "./product.model";
 
 @Table({ tableName: "invoices", timestamps: false })
 export default class InvoiceModel extends Model {
@@ -40,8 +40,8 @@ export default class InvoiceModel extends Model {
   @Column({ allowNull: false })
   total: number;
 
-  @HasMany(() => ItemModel, { foreignKey: "invoiceId" })
-  items: ItemModel[];
+  @HasMany(() => ProductInvoiceModel, { foreignKey: "invoiceId" })
+  items: ProductInvoiceModel[];
 
   @Column({ allowNull: false })
   createdAt: Date;

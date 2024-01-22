@@ -9,11 +9,11 @@ import {
 import InvoiceModel from "./invoice.model";
 
 @Table({
-  modelName: "product-invoice-table",
+  modelName: "products-invoice-table",
   tableName: "products",
   timestamps: false,
 })
-export default class ProductModel extends Model {
+export default class ProductInvoiceModel extends Model {
   @PrimaryKey
   @Column({ allowNull: false })
   id: string;
