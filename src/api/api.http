@@ -1,0 +1,77 @@
+###
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+      "name": "Product 1",
+      "description": "Product 1 description",
+      "purchasePrice": 100,
+      "stock": 10,
+}
+###
+POST http://localhost:3000/clients
+Content-Type: application/json
+
+{  
+      "name": "Client 1",
+      "email": "email",
+      "document": "document",
+      "street": "street",
+      "number": "number",
+      "complement": "complement",
+      "city": "city",
+      "state": "state",
+      "zipCode": "zipCode" 
+}
+###
+POST http://localhost:3000/checkout
+Content-Type: application/json
+
+{
+    "clientId": "1c",
+    "products": [
+      {
+        "productId": "1",
+      },
+      {
+        "productId": "2",
+      },
+    ],
+}
+
+###
+POST http://localhost:3000/invoice
+Content-Type: application/json
+
+{
+    "id": "1",
+    "name": "Invoice 1",
+    "document": "Document 1",
+    "street": "Street 1",
+    "number": "Number 1",
+    "complement": "Complement 1",
+    "city": "City 1",
+    "state": "State 1",
+    "zipCode": "ZipCode 1",
+    "items": [
+      {
+        "id": "1",
+        "name": "Item 1",
+        "price": 100,
+      },
+      {
+        "id": "2",
+        "name": "Item 2",
+        "price": 200,
+      },
+    ],
+}
+###
+@invoiceId = 1
+###
+GET http://localhost:3000/invoice/{{invoiceId}}
+
+
+
+
+

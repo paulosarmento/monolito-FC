@@ -22,7 +22,7 @@ async function setupDb() {
     storage: ":memory:",
     logging: false,
   });
-  // Entender melhor essa parte
+  // Entender melhor essa parte...
   sequelize.addModels([]);
   migration = migrator(sequelize);
   // await sequelize.sync();

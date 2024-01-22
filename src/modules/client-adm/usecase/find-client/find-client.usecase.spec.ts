@@ -23,7 +23,7 @@ const MockRepository = () => {
 };
 
 describe("Find Client Usecase unit test", () => {
-  it("should add a client", async () => {
+  it("should find a client", async () => {
     const clientRepository = MockRepository();
     const useCase = new FindClientUseCase(clientRepository);
 

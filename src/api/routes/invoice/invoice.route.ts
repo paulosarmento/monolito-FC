@@ -1,21 +1,50 @@
 import express, { Request, Response } from "express";
+import FindInvoiceUseCase from "../../../modules/invoice/usecase/find-invoice/find-invoice.usecase";
+import InvoiceRepository from "../../../modules/invoice/repository/invoice.repository";
+import GenerateInvoiceUseCase from "../../../modules/invoice/usecase/generate-invoice/generate-invoice.usecase";
 export const invoiceRoute = express.Router();
 
 invoiceRoute.get("/", async (req: Request, res: Response) => {
-  // const useCase = new FindInvoiceUseCase(new InvoiceRepository());
-  // try {
-  //   const customerDto = {
-  //     name: req.body.name,
-  //     address: {
-  //       street: req.body.address.street,
-  //       city: req.body.address.city,
-  //       number: req.body.address.number,
-  //       zip: req.body.address.zip,
-  //     },
-  //   };
-  // const output = await useCase.execute(customerDto);
-  // res.send(output);
-  // } catch (err) {
-  //   res.status(500).send(err);
-  // }
+  const useCase = new FindInvoiceUseCase(new InvoiceRepository());
+  try {
+    const invoiceDto = {
+      id: req.body.id,
+    };
+    const output = await useCase.execute(invoiceDto);
+    res.send(output);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+invoiceRoute.post("/", async (req: Request, res: Response) => {
+  const useCase = new GenerateInvoiceUseCase(new InvoiceRepository());
+  try {
+    const invoiceDto = {
+      id: req.body.invoice.id,
+      name: req.body.invoice.name,
+      document: req.body.invoice.document,
+      street: req.body.invoice.street,
+      number: req.body.invoice.number,
+      complement: req.body.invoice.complement,
+      city: req.body.invoice.city,
+      state: req.body.invoice.state,
+      zipCode: req.body.invoice.zipCode,
+      items: [
+        {
+          id: req.body.invoice.items[0].id,
+          name: req.body.invoice.items[0].name,
+          price: req.body.invoice.items[0].price,
+        },
+        {
+          id: req.body.invoice.items[1].id,
+          name: req.body.invoice.items[1].name,
+          price: req.body.invoice.items[1].price,
+        },
+      ],
+    };
+    const output = await useCase.execute(invoiceDto);
+    res.send(output);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
