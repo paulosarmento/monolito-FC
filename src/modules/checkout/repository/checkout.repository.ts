@@ -10,6 +10,14 @@ import OrderModel from "./order.model";
 import ProductModel from "./product.model";
 
 export default class CheckoutRepository implements CheckoutGateway {
+  async add(product: Product): Promise<void> {
+    await ProductModel.create({
+      id: product.id.id,
+      name: product.name,
+      description: product.description,
+      salesPrice: product.salesPrice,
+    });
+  }
   async addOrder(order: Order): Promise<Order> {
     const createdOrder = await OrderModel.create(
       {
