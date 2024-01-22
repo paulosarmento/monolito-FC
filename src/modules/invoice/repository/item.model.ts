@@ -8,8 +8,12 @@ import {
 } from "sequelize-typescript";
 import InvoiceModel from "./invoice.model";
 
-@Table({ tableName: "items", timestamps: false })
-export default class ItemModel extends Model {
+@Table({
+  modelName: "product-invoice-table",
+  tableName: "products",
+  timestamps: false,
+})
+export default class ProductModel extends Model {
   @PrimaryKey
   @Column({ allowNull: false })
   id: string;

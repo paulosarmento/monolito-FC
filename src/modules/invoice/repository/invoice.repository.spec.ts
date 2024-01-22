@@ -1,11 +1,13 @@
 import { Sequelize } from "sequelize-typescript";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import InvoiceModel from "./invoice.model";
-import ItemModel from "./item.model";
+// import ItemModel from "./item.model";
 import InvoiceRepository from "./invoice.repository";
 import Invoice from "../domain/invoice.entity";
 import Address from "../value-object/address";
-import InvoiceItems from "../domain/invoice.items.entity";
+// import InvoiceItems from "../domain/invoice.items.entity";
+import ProductModel from "./item.model";
+import Product from "../domain/invoice.items.entity";
 
 describe("InvoiceRepository test", () => {
   let sequelize: Sequelize;
@@ -17,7 +19,7 @@ describe("InvoiceRepository test", () => {
       logging: false,
       sync: { force: true },
     });
-    await sequelize.addModels([InvoiceModel, ItemModel]);
+    await sequelize.addModels([InvoiceModel, ProductModel]);
     await sequelize.sync();
   });
   afterEach(async () => {
@@ -39,12 +41,12 @@ describe("InvoiceRepository test", () => {
         "ZipCode 1"
       ),
       items: [
-        new InvoiceItems({
+        new Product({
           id: new Id("1"),
           name: "Item 1",
           price: 100,
         }),
-        new InvoiceItems({
+        new Product({
           id: new Id("2"),
           name: "Item 2",
           price: 200,
@@ -54,7 +56,7 @@ describe("InvoiceRepository test", () => {
     await invoiceRepository.generate(invoice);
     const invoiceModel = await InvoiceModel.findOne({
       where: { id: invoice.id.id },
-      include: [ItemModel],
+      include: [ProductModel],
     });
     expect(invoiceModel.toJSON()).toStrictEqual({
       id: invoice.id.id,
@@ -127,7 +129,7 @@ describe("InvoiceRepository test", () => {
       },
     ];
 
-    await ItemModel.bulkCreate(items);
+    await ProductModel.bulkCreate(items);
     const invoiceRepository = new InvoiceRepository();
 
     const invoice = await invoiceRepository.find("1");

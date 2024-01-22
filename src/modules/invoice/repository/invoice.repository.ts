@@ -1,12 +1,19 @@
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Invoice from "../domain/invoice.entity";
-import InvoiceItems from "../domain/invoice.items.entity";
+import Product from "../domain/invoice.items.entity";
 import InvoiceGateway from "../gateway/invoice.gateway";
 import Address from "../value-object/address";
 import InvoiceModel from "./invoice.model";
 import ItemModel from "./item.model";
 
 export default class InvoiceRepository implements InvoiceGateway {
+  async add(product: Product): Promise<void> {
+    await ItemModel.create({
+      id: product.id.id,
+      name: product.name,
+      price: product.price,
+    });
+  }
   async find(id: string): Promise<Invoice> {
     const invoice = await InvoiceModel.findOne({
       where: { id },
@@ -33,7 +40,7 @@ export default class InvoiceRepository implements InvoiceGateway {
       ),
       items: invoice.items.map(
         (item) =>
-          new InvoiceItems({
+          new Product({
             id: new Id(item.id),
             name: item.name,
             price: item.price,
@@ -83,7 +90,7 @@ export default class InvoiceRepository implements InvoiceGateway {
       ),
       items: createdInvoice.items.map(
         (item) =>
-          new InvoiceItems({
+          new Product({
             id: new Id(item.id),
             name: item.name,
             price: item.price,

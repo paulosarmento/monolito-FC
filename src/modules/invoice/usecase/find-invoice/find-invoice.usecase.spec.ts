@@ -1,6 +1,7 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Invoice from "../../domain/invoice.entity";
-import InvoiceItems from "../../domain/invoice.items.entity";
+import Product from "../../domain/invoice.items.entity";
+// import InvoiceItems from "../../domain/invoice.items.entity";
 import Address from "../../value-object/address";
 import FindInvoiceUseCase from "./find-invoice.usecase";
 
@@ -17,12 +18,12 @@ const invoice = new Invoice({
     "ZipCode 1"
   ),
   items: [
-    new InvoiceItems({
+    new Product({
       id: new Id("1"),
       name: "Item 1",
       price: 100,
     }),
-    new InvoiceItems({
+    new Product({
       id: new Id("2"),
       name: "Item 2",
       price: 200,
@@ -31,6 +32,7 @@ const invoice = new Invoice({
 });
 const MockRepository = () => {
   return {
+    add: jest.fn(),
     find: jest.fn().mockReturnValue(Promise.resolve(invoice)),
     generate: jest.fn(),
   };
