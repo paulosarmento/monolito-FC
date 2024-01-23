@@ -6,6 +6,7 @@ import { migrator } from "../config-migrations/migrator";
 describe("Products e2e", () => {
   let migration: Umzug<any>;
   // Entender melhor essa parte
+
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;
@@ -14,7 +15,15 @@ describe("Products e2e", () => {
     await migration.down();
     await sequelize.close();
   });
-  it("should place an order", async () => {});
+  it("should create a product", async () => {
+    const response = await request(app).post("/product").send({
+      name: "Product 1",
+      description: "Product 1 description",
+      purchasePrice: 100,
+      stock: 10,
+    });
+    expect(response.status).toBe(200);
+  });
   // it("Should create a product", async () => {
   //   const response = await request(app).post("/product").send({
   //     type: "a",

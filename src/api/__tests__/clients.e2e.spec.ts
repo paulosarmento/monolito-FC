@@ -14,5 +14,18 @@ describe("Clients e2e", () => {
     await migration.down();
     await sequelize.close();
   });
-  it("should place an order", async () => {});
+  it("should create a client", async () => {
+    const response = await request(app).post("/clients").send({
+      name: "Client 1",
+      email: "email",
+      document: "document",
+      street: "street",
+      number: "number",
+      complement: "complement",
+      city: "city",
+      state: "state",
+      zipCode: "zipCode",
+    });
+    expect(response.status).toBe(200);
+  });
 });

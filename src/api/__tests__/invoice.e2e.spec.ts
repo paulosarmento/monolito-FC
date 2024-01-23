@@ -14,5 +14,32 @@ describe("Invoice e2e", () => {
     await migration.down();
     await sequelize.close();
   });
-  it("should place an order", async () => {});
+  it("should create an invoice", async () => {
+    const response = await request(app)
+      .post("/invoice")
+      .send({
+        id: "1",
+        name: "Client 1",
+        document: "Document 1",
+        street: "Street 1",
+        number: "Number 1",
+        complement: "Complement 1",
+        city: "City 1",
+        state: "State 1",
+        zipCode: "ZipCode 1",
+        items: [
+          {
+            id: "1",
+            name: "Item 1",
+            price: 100,
+          },
+          {
+            id: "2",
+            name: "Item 2",
+            price: 200,
+          },
+        ],
+      });
+    expect(response.status).toBe(200);
+  });
 });

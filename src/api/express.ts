@@ -1,13 +1,14 @@
 import express, { Express } from "express";
 import { Sequelize } from "sequelize-typescript";
 import { productsRoute } from "./routes/products/products.route";
-import { clientsRoute } from "./routes/clients/clients.route";
 import { invoiceRoute } from "./routes/invoice/invoice.route";
 import { checkoutRoute } from "./routes/checkout/checkout.route";
 import { Umzug } from "umzug";
 import { migrator } from "./config-migrations/migrator";
 import { ClientAdmModel } from "../modules/client-adm/repository/client.model";
 import { ProductAdmModel } from "../modules/product-adm/repository/product.model";
+import { clientsRoute } from "./routes/clients/clients.routes";
+import InvoiceModel from "../modules/invoice/repository/invoice.model";
 
 export const app: Express = express();
 app.use(express.json());
@@ -25,7 +26,7 @@ async function setupDb() {
     logging: false,
   });
   // Entender melhor essa parte...
-  sequelize.addModels([ClientAdmModel, ProductAdmModel]);
+  sequelize.addModels([ProductAdmModel, ClientAdmModel, InvoiceModel]);
   migration = migrator(sequelize);
   // await sequelize.sync();
   await migration.up();
