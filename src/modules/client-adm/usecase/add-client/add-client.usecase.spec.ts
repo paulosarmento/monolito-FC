@@ -2,7 +2,7 @@ import AddClientUseCase from "./add-client.usecase";
 
 const MockRepository = () => {
   return {
-    add: jest.fn(),
+    addClient: jest.fn(),
     find: jest.fn(),
   };
 };
@@ -25,7 +25,7 @@ describe("AddClientUsecase unit test", () => {
     };
 
     const result = await useCase.execute(input);
-    expect(clientRepository.add).toHaveBeenCalled();
+    expect(clientRepository.addClient).toHaveBeenCalled();
     expect(result.id).toBeDefined();
     expect(result.name).toBe(input.name);
     expect(result.email).toBe(input.email);

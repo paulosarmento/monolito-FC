@@ -27,7 +27,7 @@ export default class AddClientUseCase {
     };
 
     const client = new Client(props);
-    this._clientRepository.add(client);
+    this._clientRepository.addClient(client);
 
     return {
       id: client.id.id,

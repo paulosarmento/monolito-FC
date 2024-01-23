@@ -17,7 +17,7 @@ const client = new Client({
 
 const MockRepository = () => {
   return {
-    add: jest.fn(),
+    addClient: jest.fn(),
     find: jest.fn().mockReturnValue(Promise.resolve(client)),
   };
 };

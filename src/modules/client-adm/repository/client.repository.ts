@@ -4,7 +4,7 @@ import ClientGateway from "../gateway/client.gateway";
 import { ClientAdmModel } from "./client.model";
 
 export default class ClientRepository implements ClientGateway {
-  async add(client: Client): Promise<void> {
+  async addClient(client: Client): Promise<void> {
     await ClientAdmModel.create({
       id: client.id.id,
       name: client.name,

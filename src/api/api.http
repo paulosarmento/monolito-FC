@@ -28,43 +28,66 @@ POST http://localhost:3000/checkout
 Content-Type: application/json
 
 {
-    "clientId": "1c",
-    "products": [
-      {
-        "productId": "1",
-      },
-      {
-        "productId": "2",
-      },
-    ],
-}
+      "id": "1o",
+      "client": [
+        {
+          "id": "1c",
+          "name": "client 1",
+          "email": "client@example.com",
+          "document": "document", 
+          "street": "street", 
+          "number": "number",
+          "complement": "complement", 
+          "city": "city",
+          "state": "state",
+          "zipCode": "zipCode",
+        },
+      ],
+
+      "products": [
+        {
+          "id": "1p",
+          "name": "products 1",
+          "description": "products",
+          "salesPrice": "price",
+        },
+        {
+          "id": "1p",
+          "name": "products 1",
+          "description": "products",
+          "salesPrice": "price",
+        }
+      ],
+
+      "status": "approved",
+    };
 
 ###
 POST http://localhost:3000/invoice
 Content-Type: application/json
 
 {
-    "id": "1",
-    "name": "Invoice 1",
-    "document": "Document 1",
-    "street": "Street 1",
-    "number": "Number 1",
-    "complement": "Complement 1",
-    "city": "City 1",
-    "state": "State 1",
-    "zipCode": "ZipCode 1",
-    "items": [
-      {
-        "id": "1",
-        "name": "Item 1",
-        "price": 100,
-      },
-      {
-        "id": "2",
-        "name": "Item 2",
-        "price": 200,
-      },
-    ],
+  "id": "1",
+  "name": "Client 1",
+  "document": "Document 1",
+  "street": "Street 1",
+  "number": "Number 1",
+  "complement": "Complement 1",
+  "city": "City 1",
+  "state": "State 1",
+  "zipCode": "ZipCode 1",
+  "items": [
+    {
+      "id": "1",
+      "name": "Item 1",
+      "price": 100,
+    },
+    {
+      "id": "2",
+      "name": "Item 2",
+      "price": 200,
+    },
+  ],
 }
 ###
 @invoiceId = 1

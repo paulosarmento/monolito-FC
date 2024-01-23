@@ -2,22 +2,23 @@ import express, { Request, Response } from "express";
 import FindInvoiceUseCase from "../../../modules/invoice/usecase/find-invoice/find-invoice.usecase";
 import InvoiceRepository from "../../../modules/invoice/repository/invoice.repository";
 import GenerateInvoiceUseCase from "../../../modules/invoice/usecase/generate-invoice/generate-invoice.usecase";
+import InvoiceFacadeFactory from "../../../modules/invoice/factory/facade.factory";
 export const invoiceRoute = express.Router();
 
 invoiceRoute.get("/", async (req: Request, res: Response) => {
-  const useCase = new FindInvoiceUseCase(new InvoiceRepository());
+  const useCase = InvoiceFacadeFactory.create();
   try {
     const invoiceDto = {
       id: req.body.id,
     };
-    const output = await useCase.execute(invoiceDto);
+    const output = await useCase.find(invoiceDto);
     res.send(output);
   } catch (err) {
     res.status(500).send(err);
   }
 });
 invoiceRoute.post("/", async (req: Request, res: Response) => {
-  const useCase = new GenerateInvoiceUseCase(new InvoiceRepository());
+  const useCase = InvoiceFacadeFactory.create();
   try {
     const invoiceDto = {
       id: req.body.invoice.id,
@@ -42,7 +43,7 @@ invoiceRoute.post("/", async (req: Request, res: Response) => {
         },
       ],
     };
-    const output = await useCase.execute(invoiceDto);
+    const output = await useCase.generate(invoiceDto);
     res.send(output);
   } catch (err) {
     res.status(500).send(err);

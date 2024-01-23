@@ -6,13 +6,15 @@ import { invoiceRoute } from "./routes/invoice/invoice.route";
 import { checkoutRoute } from "./routes/checkout/checkout.route";
 import { Umzug } from "umzug";
 import { migrator } from "./config-migrations/migrator";
+import { ClientAdmModel } from "../modules/client-adm/repository/client.model";
+import { ProductAdmModel } from "../modules/product-adm/repository/product.model";
 
 export const app: Express = express();
 app.use(express.json());
 app.use("/products", productsRoute);
 app.use("/clients", clientsRoute);
 app.use("/checkout", checkoutRoute);
-app.use("/invoice/<id>", invoiceRoute);
+app.use("/invoice", invoiceRoute);
 
 export let sequelize: Sequelize;
 export let migration: Umzug<any>;
@@ -23,7 +25,7 @@ async function setupDb() {
     logging: false,
   });
   // Entender melhor essa parte...
-  sequelize.addModels([]);
+  sequelize.addModels([ClientAdmModel, ProductAdmModel]);
   migration = migrator(sequelize);
   // await sequelize.sync();
   await migration.up();

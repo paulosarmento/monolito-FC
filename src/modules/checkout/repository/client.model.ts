@@ -8,7 +8,11 @@ import {
 } from "sequelize-typescript";
 import OrderModel from "./order.model";
 
-@Table({ tableName: "client-checkout", timestamps: false })
+@Table({
+  modelName: "clients-checkout-table",
+  tableName: "clients",
+  timestamps: false,
+})
 export class ClientCheckoutModel extends Model {
   @PrimaryKey
   @Column({ allowNull: false })

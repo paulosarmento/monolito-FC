@@ -38,7 +38,7 @@ describe("ClientRepository test", () => {
       updatedAt: new Date(),
     });
 
-    await clientRepository.add(client);
+    await clientRepository.addClient(client);
 
     const clientDb = await ClientAdmModel.findOne({
       where: {
