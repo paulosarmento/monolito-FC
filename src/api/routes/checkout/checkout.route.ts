@@ -3,7 +3,7 @@ import CheckoutFacadeFactory from "../../../modules/checkout/factory/facade.fact
 export const checkoutRoute = express.Router();
 
 checkoutRoute.post("/", async (req: Request, res: Response) => {
-  // Entender melhor essa parte
+  // Entender melhor essa parte ...
   try {
     const useCase = CheckoutFacadeFactory.create();
 

@@ -25,7 +25,7 @@ async function setupDb() {
     storage: ":memory:",
     logging: false,
   });
-  // Entender melhor essa parte...
+  // Entender melhor essa parte....
   sequelize.addModels([ProductAdmModel, ClientAdmModel, InvoiceModel]);
   migration = migrator(sequelize);
   // await sequelize.sync();
