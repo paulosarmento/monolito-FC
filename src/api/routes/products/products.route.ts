@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import AddProductUseCase from "../../../modules/product-adm/usecase/add-product/add-product.usecase";
 import ProductAdmRepository from "../../../modules/product-adm/repository/product.repository";
 import ProductAdmFacadeFactory from "../../../modules/product-adm/factory/facade.factory";
+import StoreCatalogFacadeFactory from "../../../modules/store-catalog/factory/facade.factory";
 export const productsRoute = express.Router();
 
 productsRoute.post("/", async (req: Request, res: Response) => {

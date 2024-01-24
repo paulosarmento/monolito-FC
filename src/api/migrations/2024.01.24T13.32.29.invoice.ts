@@ -44,35 +44,11 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
     },
     total: {
       type: DataTypes.NUMBER,
-      allowNull: false,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-    },
-  });
-
-  await sequelize.getQueryInterface().createTable("products", {
-    id: {
-      type: DataTypes.STRING(255),
-      primaryKey: true,
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    price: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
-    invoiceId: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      references: {
-        model: "invoices",
-        key: "id",
-      },
     },
   });
 };

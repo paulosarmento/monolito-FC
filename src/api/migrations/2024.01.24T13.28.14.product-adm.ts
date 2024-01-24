@@ -14,25 +14,50 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+
     description: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.NUMBER,
+      allowNull: true,
     },
     purchasePrice: {
       type: DataTypes.NUMBER,
-      allowNull: false,
+      allowNull: true,
     },
     stock: {
       type: DataTypes.NUMBER,
-      allowNull: false,
+      allowNull: true,
+    },
+    salesPrice: {
+      type: DataTypes.NUMBER,
+      allowNull: true,
+    },
+    orderId: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      references: {
+        model: "orders",
+        key: "id",
+      },
+    },
+    invoiceId: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      references: {
+        model: "invoices",
+        key: "id",
+      },
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
   });
 };

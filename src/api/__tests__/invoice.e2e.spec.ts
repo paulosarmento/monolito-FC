@@ -27,6 +27,7 @@ describe("Invoice e2e", () => {
         city: "City 1",
         state: "State 1",
         zipCode: "ZipCode 1",
+        total: 300,
         items: [
           {
             id: "1",

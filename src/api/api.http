@@ -3,7 +3,7 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-      "name": "Product 1",
+      "name": "2",
       "description": "Product 1 description",
       "purchasePrice": 100,
       "stock": 10
@@ -13,7 +13,7 @@ POST http://localhost:3000/clients
 Content-Type: application/json
 
 {  
-      "name": "Client 1",
+      "name": "Client 2",
       "email": "email",
       "document": "document",
       "street": "street",
@@ -40,8 +40,8 @@ Content-Type: application/json
           "complement": "complement", 
           "city": "city",
           "state": "state",
-          "zipCode": "zipCode",
-        },
+          "zipCode": "zipCode"
+        }
       ],
 
       "products": [
@@ -49,25 +49,24 @@ Content-Type: application/json
           "id": "1p",
           "name": "products 1",
           "description": "products",
-          "salesPrice": "price",
+          "salesPrice": "price"
         },
         {
           "id": "1p",
           "name": "products 1",
           "description": "products",
-          "salesPrice": "price",
+          "salesPrice": "price"
         }
       ],
 
-      "status": "approved",
-    };
+      "status": "approved"
+    }
 
 ###
 POST http://localhost:3000/invoice
 Content-Type: application/json
 
 {
-  "id": "1",
   "name": "Client 1",
   "document": "Document 1",
   "street": "Street 1",
@@ -80,17 +79,18 @@ Content-Type: application/json
     {
       "id": "1",
       "name": "Item 1",
-      "price": 100,
+      "price": 100
     },
     {
       "id": "2",
       "name": "Item 2",
-      "price": 200,
-    },
-  ],
+      "price": 200
+    }
+  ]
+  
 }
 ###
-@invoiceId = 1
+@invoiceId = f281fda1-3881-46da-9d0a-8bbcd88d488f
 ###
 GET http://localhost:3000/invoice/{{invoiceId}}
 
