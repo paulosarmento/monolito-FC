@@ -6,7 +6,7 @@ Content-Type: application/json
       "name": "Product 1",
       "description": "Product 1 description",
       "purchasePrice": 100,
-      "stock": 10,
+      "stock": 10
 }
 ###
 POST http://localhost:3000/clients
