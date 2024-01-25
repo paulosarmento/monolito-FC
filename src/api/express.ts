@@ -10,10 +10,7 @@ import { ClientAdmModel } from "../modules/client-adm/repository/client.model";
 import { ProductAdmModel } from "../modules/product-adm/repository/product.model";
 import { clientsRoute } from "./routes/clients/clients.routes";
 import InvoiceModel from "../modules/invoice/repository/invoice.model";
-import OrderModel from "../modules/checkout/repository/order.model";
-import { ClientCheckoutModel } from "../modules/checkout/repository/client.model";
 import ProductInvoiceModel from "../modules/invoice/repository/product.model";
-import ProductCheckoutModel from "../modules/checkout/repository/product.model";
 import TransactionModel from "../modules/payment/repository/transaction.model";
 import ProductStoreModel from "../modules/store-catalog/repository/product.model";
 
@@ -38,9 +35,6 @@ async function setupDb() {
     ClientAdmModel,
     InvoiceModel,
     ProductInvoiceModel,
-    ProductCheckoutModel,
-    ClientCheckoutModel,
-    OrderModel,
     TransactionModel,
     ProductStoreModel,
   ]);

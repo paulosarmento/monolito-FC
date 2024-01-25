@@ -29,7 +29,7 @@ export default class Client extends BaseEntity implements AggregateRoot {
   private _zipCode: string;
 
   constructor(props: ClientProps) {
-    super(props.id, props.createdAt, props.updatedAt);
+    super(props.id);
     this._name = props.name;
     this._email = props.email;
     this._document = props.document;
@@ -40,13 +40,13 @@ export default class Client extends BaseEntity implements AggregateRoot {
     this._state = props.state;
     this._zipCode = props.zipCode;
   }
-
   get name(): string {
     return this._name;
   }
   get email(): string {
     return this._email;
   }
+
   get document(): string {
     return this._document;
   }

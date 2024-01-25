@@ -26,9 +26,8 @@ export interface FindClientFacadeOutputDto {
   city: string;
   state: string;
   zipCode: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
+
 export default interface ClientAdmFacadeInterface {
   add(input: AddClientFacadeInputDto): Promise<void>;
   find(input: FindClientFacadeInputDto): Promise<FindClientFacadeOutputDto>;

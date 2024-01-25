@@ -26,7 +26,15 @@ describe("Clients e2e", () => {
       state: "state",
       zipCode: "zipCode",
     });
-    console.log(JSON.stringify(response.body));
     expect(response.status).toBe(200);
+    expect(response.body.name).toBe("Client 1");
+    expect(response.body.email).toBe("email");
+    expect(response.body.document).toBe("document");
+    expect(response.body.street).toBe("street");
+    expect(response.body.number).toBe("number");
+    expect(response.body.complement).toBe("complement");
+    expect(response.body.city).toBe("city");
+    expect(response.body.state).toBe("state");
+    expect(response.body.zipCode).toBe("zipCode");
   });
 });

@@ -29,15 +29,7 @@ POST http://localhost:3000/checkout
 Content-Type: application/json
 
 {
-      "clientId": "",
-      "products": [
-        {
-          "productId": ""
-        },
-        {
-          "productId": ""
-        }
-      ]
+   
 }
 
 ###
@@ -68,7 +60,7 @@ Content-Type: application/json
   
 }
 ###
-@invoiceId = f281fda1-3881-46da-9d0a-8bbcd88d488f
+@invoiceId = 2a65d9a9-fc58-4699-8e05-27060ce635ad
 ###
 GET http://localhost:3000/invoice/{{invoiceId}}
 

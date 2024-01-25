@@ -19,7 +19,6 @@ clientsRoute.post("/", async (req: Request, res: Response) => {
     };
 
     const output = await useCase.add(clientDto);
-    console.log(output);
     res.send(output);
   } catch (err) {
     res.status(500).send(err);

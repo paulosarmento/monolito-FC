@@ -89,7 +89,5 @@ describe("ClientRepository test", () => {
     expect(result.city).toEqual(client.city);
     expect(result.state).toEqual(client.state);
     expect(result.zipCode).toEqual(client.zipCode);
-    expect(result.createdAt).toStrictEqual(client.createdAt);
-    expect(result.updatedAt).toStrictEqual(client.updatedAt);
   });
 });
