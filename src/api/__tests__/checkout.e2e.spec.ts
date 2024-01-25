@@ -5,7 +5,6 @@ import request from "supertest";
 
 describe("Checkout e2e", () => {
   let migration: Umzug<any>;
-  // Entender melhor essa parte
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;
@@ -15,41 +14,46 @@ describe("Checkout e2e", () => {
     await sequelize.close();
   });
   it("should create a checkout", async () => {
+    const client = await request(app).post("/clients").send({
+      name: "Client 1",
+      email: "email",
+      document: "document",
+      street: "street",
+      number: "number",
+      complement: "complement",
+      city: "city",
+      state: "state",
+      zipCode: "zipCode",
+    });
+
+    const product = await request(app).post("/products").send({
+      name: "Product 1",
+      description: "Product 1 description",
+      purchasePrice: 100,
+      stock: 10,
+    });
+
+    const product2 = await request(app).post("/products").send({
+      name: "Product 2",
+      description: "Product 1 description",
+      purchasePrice: 100,
+      stock: 10,
+    });
+    // Entender melhor essa parte
+    console.log(client.body.id, product.body.id, product2.body.id);
+
     const response = await request(app)
       .post("/checkout")
       .send({
-        id: "1o",
-        client: [
-          {
-            id: "1c",
-            name: "client 1",
-            email: "client@example.com",
-            document: "document",
-            street: "street",
-            number: "number",
-            complement: "complement",
-            city: "city",
-            state: "state",
-            zipCode: "zipCode",
-          },
-        ],
-
+        clientId: client.body.id,
         products: [
           {
-            id: "1p",
-            name: "products 1",
-            description: "products",
-            salesPrice: "price",
+            productId: product.body.id,
           },
           {
-            id: "1p",
-            name: "products 1",
-            description: "products",
-            salesPrice: "price",
+            productId: product2.body.id,
           },
         ],
-
-        status: "approved",
       });
     expect(response.status).toBe(200);
   });

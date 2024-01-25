@@ -1,7 +1,4 @@
 import express, { Request, Response } from "express";
-import FindInvoiceUseCase from "../../../modules/invoice/usecase/find-invoice/find-invoice.usecase";
-import InvoiceRepository from "../../../modules/invoice/repository/invoice.repository";
-import GenerateInvoiceUseCase from "../../../modules/invoice/usecase/generate-invoice/generate-invoice.usecase";
 import InvoiceFacadeFactory from "../../../modules/invoice/factory/facade.factory";
 export const invoiceRoute = express.Router();
 

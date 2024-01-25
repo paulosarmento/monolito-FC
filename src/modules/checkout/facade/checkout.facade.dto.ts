@@ -1,26 +1,8 @@
 export interface PlaceOrderFacadeInputDto {
-  id: string;
-  client: {
-    id: string;
-    name: string;
-    email: string;
-    document: string;
-    street: string;
-    number: string;
-    complement: string;
-    city: string;
-    state: string;
-    zipCode: string;
-  }[];
-
+  clientId: string;
   products: {
-    id: string;
-    name: string;
-    description: string;
-    salesPrice: number;
+    productId: string;
   }[];
-
-  status: string;
 }
 
 export interface PlaceOrderFacadeOutputDto {

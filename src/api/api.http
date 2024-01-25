@@ -13,7 +13,7 @@ POST http://localhost:3000/clients
 Content-Type: application/json
 
 {  
-      "name": "Client 2",
+      "name": "Client 5",
       "email": "email",
       "document": "document",
       "street": "street",
@@ -23,44 +23,22 @@ Content-Type: application/json
       "state": "state",
       "zipCode": "zipCode" 
 }
+
 ###
 POST http://localhost:3000/checkout
 Content-Type: application/json
 
 {
-      "id": "1o",
-      "client": [
-        {
-          "id": "1c",
-          "name": "client 1",
-          "email": "client@example.com",
-          "document": "document", 
-          "street": "street", 
-          "number": "number",
-          "complement": "complement", 
-          "city": "city",
-          "state": "state",
-          "zipCode": "zipCode"
-        }
-      ],
-
+      "clientId": "",
       "products": [
         {
-          "id": "1p",
-          "name": "products 1",
-          "description": "products",
-          "salesPrice": "price"
+          "productId": ""
         },
         {
-          "id": "1p",
-          "name": "products 1",
-          "description": "products",
-          "salesPrice": "price"
+          "productId": ""
         }
-      ],
-
-      "status": "approved"
-    }
+      ]
+}
 
 ###
 POST http://localhost:3000/invoice

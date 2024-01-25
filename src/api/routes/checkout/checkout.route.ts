@@ -8,32 +8,10 @@ checkoutRoute.post("/", async (req: Request, res: Response) => {
     const useCase = CheckoutFacadeFactory.create();
 
     const orderDto = {
-      id: req.body.id,
-      client: [
-        {
-          id: req.body.client.id,
-          name: req.body.client.name,
-          email: req.body.client.email,
-          document: req.body.client.document,
-          street: req.body.client.street,
-          number: req.body.client.number,
-          complement: req.body.client.complement,
-          city: req.body.client.city,
-          state: req.body.client.state,
-          zipCode: req.body.client.zipCode,
-        },
-      ],
-
-      products: [
-        {
-          id: req.body.products[0].id,
-          name: req.body.products[0].name,
-          description: req.body.products[0].description,
-          salesPrice: req.body.products[0].salesPrice,
-        },
-      ],
-
-      status: req.body.status,
+      clientId: req.body.clientId,
+      products: req.body.products.map((product: { productId: string }) => ({
+        productId: product.productId,
+      })),
     };
 
     const output = await useCase.placeOrder(orderDto);

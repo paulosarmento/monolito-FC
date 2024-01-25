@@ -5,8 +5,6 @@ import { migrator } from "../config-migrations/migrator";
 
 describe("Products e2e", () => {
   let migration: Umzug<any>;
-  // Entender melhor essa parte
-
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;
@@ -23,5 +21,9 @@ describe("Products e2e", () => {
       stock: 10,
     });
     expect(response.status).toBe(200);
+    expect(response.body.name).toBe("Product 1");
+    expect(response.body.description).toBe("Product 1 description");
+    expect(response.body.purchasePrice).toBe(100);
+    expect(response.body.stock).toBe(10);
   });
 });

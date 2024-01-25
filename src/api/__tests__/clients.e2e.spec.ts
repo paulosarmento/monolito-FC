@@ -26,6 +26,7 @@ describe("Clients e2e", () => {
       state: "state",
       zipCode: "zipCode",
     });
+    console.log(JSON.stringify(response.body));
     expect(response.status).toBe(200);
   });
 });

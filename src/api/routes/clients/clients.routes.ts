@@ -1,6 +1,4 @@
 import express, { Request, Response } from "express";
-import AddClientUseCase from "../../../modules/client-adm/usecase/add-client/add-client.usecase";
-import ClientRepository from "../../../modules/client-adm/repository/client.repository";
 import ClientAdmFacadeFactory from "../../../modules/client-adm/factory/client-adm.facade.factory";
 export const clientsRoute = express.Router();
 
@@ -8,6 +6,7 @@ clientsRoute.post("/", async (req: Request, res: Response) => {
   const useCase = ClientAdmFacadeFactory.create();
   try {
     const clientDto = {
+      id: req.body.id,
       name: req.body.name,
       email: req.body.email,
       document: req.body.document,
@@ -20,6 +19,7 @@ clientsRoute.post("/", async (req: Request, res: Response) => {
     };
 
     const output = await useCase.add(clientDto);
+    console.log(output);
     res.send(output);
   } catch (err) {
     res.status(500).send(err);
