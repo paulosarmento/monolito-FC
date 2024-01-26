@@ -13,6 +13,9 @@ import InvoiceModel from "../modules/invoice/repository/invoice.model";
 import ProductInvoiceModel from "../modules/invoice/repository/product.model";
 import TransactionModel from "../modules/payment/repository/transaction.model";
 import ProductStoreModel from "../modules/store-catalog/repository/product.model";
+import ProductCheckoutModel from "../modules/checkout/repository/product.model";
+import ClientCheckoutModel from "../modules/checkout/repository/client.model";
+import OrderModel from "../modules/checkout/repository/order.model";
 
 export const app: Express = express();
 app.use(express.json());
@@ -37,6 +40,9 @@ async function setupDb() {
     ProductInvoiceModel,
     TransactionModel,
     ProductStoreModel,
+    ProductCheckoutModel,
+    ClientCheckoutModel,
+    OrderModel,
   ]);
   migration = migrator(sequelize);
   // await sequelize.sync();

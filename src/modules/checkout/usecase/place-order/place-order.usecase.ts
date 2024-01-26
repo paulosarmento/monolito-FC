@@ -61,7 +61,7 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
     });
     // criar o objeto da order (client, products  )
     const myOrder = new Order({
-      client: [myClient],
+      client: myClient,
       products,
     });
     // processpayment -> paymentfacade.process (orderId, amount)

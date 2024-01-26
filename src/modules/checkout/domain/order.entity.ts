@@ -5,13 +5,13 @@ import Product from "./product.entity";
 
 type OrderProps = {
   id?: Id;
-  client: Client[];
+  client: Client;
   products: Product[];
   status?: string;
 };
 
 export default class Order extends BaseEntity {
-  private _client: Client[];
+  private _client: Client;
   private _products: Product[];
   private _status: string;
 
@@ -25,7 +25,7 @@ export default class Order extends BaseEntity {
   approve(): void {
     this._status = "approved";
   }
-  get client(): Client[] {
+  get client(): Client {
     return this._client;
   }
   get products(): Product[] {

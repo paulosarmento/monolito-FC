@@ -1,7 +1,6 @@
 import { Umzug } from "umzug";
 import { migrator } from "../config-migrations/migrator";
-import { app, migration, sequelize } from "../express";
-import request from "supertest";
+import { sequelize } from "../express";
 
 describe("Checkout e2e", () => {
   let migration: Umzug<any>;
@@ -13,5 +12,5 @@ describe("Checkout e2e", () => {
     await migration.down();
     await sequelize.close();
   });
-  it("should create a checkout", async () => {});
+  it("should on checkout", async () => {});
 });

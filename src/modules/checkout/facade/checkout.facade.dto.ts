@@ -1,3 +1,16 @@
-export interface PlaceOrderFacadeInputDto {}
+export interface PlaceOrderFacadeInputDto {
+  clientId: string;
+  products: {
+    productId: string;
+  }[];
+}
 
-export interface PlaceOrderFacadeOutputDto {}
+export interface PlaceOrderFacadeOutputDto {
+  id: string;
+  invoiceId: string;
+  status: string;
+  total: number;
+  products: {
+    productId: string;
+  }[];
+}
