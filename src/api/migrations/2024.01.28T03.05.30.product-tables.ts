@@ -4,7 +4,7 @@ import { DataTypes, Sequelize } from "sequelize";
 import { MigrationFn } from "umzug";
 
 export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().createTable("products", {
+  await sequelize.getQueryInterface().createTable("product", {
     id: {
       type: DataTypes.STRING(255),
       primaryKey: true,
@@ -19,30 +19,19 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-    price: {
-      type: DataTypes.NUMBER,
-      allowNull: true,
-    },
-    purchasePrice: {
-      type: DataTypes.NUMBER,
-      allowNull: true,
-    },
-    stock: {
-      type: DataTypes.NUMBER,
-      allowNull: true,
-    },
     salesPrice: {
       type: DataTypes.NUMBER,
       allowNull: true,
     },
-    // orderId: {
-    //   type: DataTypes.STRING(255),
-    //   allowNull: true,
-    //   references: {
-    //     model: "orders",
-    //     key: "id",
-    //   },
-    // },
+
+    orderId: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      references: {
+        model: "orders",
+        key: "id",
+      },
+    },
 
     createdAt: {
       type: DataTypes.DATE,
@@ -56,5 +45,5 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
 };
 
 export const down: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().dropTable("products");
+  await sequelize.getQueryInterface().dropTable("product");
 };

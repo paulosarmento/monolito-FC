@@ -23,7 +23,7 @@ export default class ProductAdmRepository implements ProductGateway {
     if (!product) {
       throw new Error(`Product with id ${id} not found`);
     }
-
+    // console.log(product);
     return new Product({
       id: new Id(product.id),
       name: product.name,
@@ -32,6 +32,20 @@ export default class ProductAdmRepository implements ProductGateway {
       stock: product.stock,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
+    });
+  }
+  async findAll(): Promise<Product[]> {
+    const products = await ProductAdmModel.findAll();
+    return products.map((product) => {
+      return new Product({
+        id: new Id(product.id),
+        name: product.name,
+        description: product.description,
+        purchasePrice: product.purchasePrice,
+        stock: product.stock,
+        createdAt: product.createdAt,
+        updatedAt: product.updatedAt,
+      });
     });
   }
 }

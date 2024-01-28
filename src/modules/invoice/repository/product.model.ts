@@ -10,7 +10,7 @@ import InvoiceModel from "./invoice.model";
 
 @Table({
   modelName: "products-invoice-table",
-  tableName: "products",
+  tableName: "invoice-products",
   timestamps: false,
 })
 export default class ProductInvoiceModel extends Model {

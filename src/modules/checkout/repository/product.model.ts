@@ -10,7 +10,7 @@ import OrderModel from "./order.model";
 
 @Table({
   modelName: "product-checkout-table",
-  tableName: "products",
+  tableName: "product",
   timestamps: false,
 })
 export default class ProductCheckoutModel extends Model {
@@ -33,10 +33,4 @@ export default class ProductCheckoutModel extends Model {
 
   @BelongsTo(() => OrderModel)
   declare order: OrderModel;
-
-  @Column({ allowNull: false })
-  createdAt: Date;
-
-  @Column({ allowNull: false })
-  updatedAt: Date;
 }

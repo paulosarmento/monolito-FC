@@ -24,3 +24,15 @@ clientsRoute.post("/", async (req: Request, res: Response) => {
     res.status(500).send(err);
   }
 });
+clientsRoute.get("/:id", async (req: Request, res: Response) => {
+  const useCase = ClientAdmFacadeFactory.create();
+  try {
+    const clientDto = {
+      id: req.params.id,
+    };
+    const output = await useCase.find(clientDto);
+    res.send(output);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});

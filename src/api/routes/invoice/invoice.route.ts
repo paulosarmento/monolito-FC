@@ -28,27 +28,17 @@ invoiceRoute.post("/", async (req: Request, res: Response) => {
       state: req.body.state,
       zipCode: req.body.zipCode,
       total: req.body.total,
-      items: [
-        {
-          id: req.body.items[0].id,
-          name: req.body.items[0].name,
-          price: req.body.items[0].price,
-          invoiceId: req.body.items[0].invoiceId,
-          createdAt: new Date(),
-        },
-        {
-          id: req.body.items[1].id,
-          name: req.body.items[1].name,
-          price: req.body.items[1].price,
-          invoiceId: req.body.items[1].invoiceId,
-          createdAt: new Date(),
-        },
-      ],
+      items: req.body.items.map((item: any) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        invoiceId: item.invoiceId,
+        createdAt: new Date(),
+      })),
     };
     const output = await useCase.generate(invoiceDto);
     res.send(output);
   } catch (err) {
-    console.error(err);
     res.status(500).send(err);
   }
 });

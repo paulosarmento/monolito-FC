@@ -13,15 +13,15 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
     },
     status: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
   });
 };

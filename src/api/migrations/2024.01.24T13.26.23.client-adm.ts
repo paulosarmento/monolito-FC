@@ -45,14 +45,14 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       allowNull: false,
     },
 
-    orderId: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      references: {
-        model: "orders",
-        key: "id",
-      },
-    },
+    // orderId: {
+    //   type: DataTypes.STRING(255),
+    //   allowNull: true,
+    //   references: {
+    //     model: "orders",
+    //     key: "id",
+    //   },
+    // },
 
     createdAt: {
       type: DataTypes.DATE,

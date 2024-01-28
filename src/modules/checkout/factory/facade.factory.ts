@@ -4,16 +4,16 @@ import PaymentFacadeFactory from "../../payment/factory/payment.facade.factory";
 import ProductAdmFacadeFactory from "../../product-adm/factory/facade.factory";
 import StoreCatalogFacadeFactory from "../../store-catalog/factory/facade.factory";
 import CheckoutFacade from "../facade/checkout.facade";
-import CheckoutRepository from "../repository/order.repository";
+import OrderRepository from "../repository/order.repository";
 import PlaceOrderUseCase from "../usecase/place-order/place-order.usecase";
 
 export default class CheckoutFacadeFactory {
   // Entender melhor essa parte
   static create() {
     const clientFactory = ClientAdmFacadeFactory.create();
-    const productFactory = ProductAdmFacadeFactory.create();
     const catalogFactory = StoreCatalogFacadeFactory.create();
-    const checkoutRepository = new CheckoutRepository();
+    const productFactory = ProductAdmFacadeFactory.create();
+    const checkoutRepository = new OrderRepository();
     const invoiceRepository = InvoiceFacadeFactory.create();
     const paymentFactory = PaymentFacadeFactory.create();
 

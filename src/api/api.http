@@ -9,11 +9,33 @@ Content-Type: application/json
       "stock": 10
 }
 ###
+POST http://localhost:3000/store
+Content-Type: application/json
+
+{
+      "name": "2",
+      "description": "Product 1 description",
+      "salesPrice": 100
+}
+
+###
+GET http://localhost:3000/products
+###
+GET http://localhost:3000/store
+###
+@productId = ae96bc9d-7a7e-4644-91b7-fa1b953fb199
+###
+GET http://localhost:3000/products/{{productId}}
+###
+GET http://localhost:3000/store/{{productId}}
+
+###
 POST http://localhost:3000/clients
 Content-Type: application/json
 
 {  
-      "name": "Client 5",
+      # "id": "1p",
+      "name": "Client 7",
       "email": "email",
       "document": "document",
       "street": "street",
@@ -25,17 +47,21 @@ Content-Type: application/json
 }
 
 ###
+@clientId = 9d40d241-56ba-46f9-81a3-79b4a447e442
+###
+GET http://localhost:3000/clients/{{clientId}}
+
+
+###
 POST http://localhost:3000/checkout
 Content-Type: application/json
 
 {
-    "clientId": "1",
+    
+    "clientId": "{{clientId}}",
     "products": [
         {
-            "product_id": "1"
-        },
-        {
-            "product_id": "2"
+            "productId": "{{productId}}"
         }
     ]
 }
@@ -68,7 +94,7 @@ Content-Type: application/json
   
 }
 ###
-@invoiceId = 8b9c6dbb-1030-4cb8-80a5-c6c7fa526439
+@invoiceId = fb09af29-7647-49d4-9043-0616de2d7cb5
 ###
 GET http://localhost:3000/invoice/{{invoiceId}}
 

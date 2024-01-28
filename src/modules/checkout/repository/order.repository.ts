@@ -14,13 +14,7 @@ export default class OrderRepository implements CheckoutGateway {
       id: client.id.id,
       name: client.name,
       email: client.email,
-      document: client.document,
-      street: client.street,
-      number: client.number,
-      complement: client.complement,
-      city: client.city,
-      state: client.state,
-      zipCode: client.zipCode,
+      address: client.address,
     });
   }
   async add(product: Product): Promise<void> {
@@ -37,26 +31,18 @@ export default class OrderRepository implements CheckoutGateway {
         id: order.id.id,
         client: {
           id: order.client.id.id,
+          orderId: order.id.id,
           name: order.client.name,
           email: order.client.email,
-          document: order.client.document,
-          street: order.client.street,
-          number: order.client.number,
-          complement: order.client.complement,
-          city: order.client.city,
-          state: order.client.state,
-          zipCode: order.client.zipCode,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          address: order.client.address,
         },
 
         products: order.products.map((product) => ({
           id: product.id.id,
+          orderId: order.id.id,
           name: product.name,
           description: product.description,
           salesPrice: product.salesPrice,
-          createdAt: product.createdAt,
-          updatedAt: product.updatedAt,
         })),
 
         status: order.status,
@@ -73,15 +59,7 @@ export default class OrderRepository implements CheckoutGateway {
         id: new Id(createdOrder.client.id),
         name: createdOrder.client.name,
         email: createdOrder.client.email,
-        document: createdOrder.client.document,
-        street: createdOrder.client.street,
-        number: createdOrder.client.number,
-        complement: createdOrder.client.complement,
-        city: createdOrder.client.city,
-        state: createdOrder.client.state,
-        zipCode: createdOrder.client.zipCode,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        address: createdOrder.client.address,
       }),
       products: createdOrder.products.map(
         (product) =>
@@ -109,15 +87,7 @@ export default class OrderRepository implements CheckoutGateway {
       id: new Id(order.client.id),
       name: order.client.name,
       email: order.client.email,
-      document: order.client.document,
-      street: order.client.street,
-      number: order.client.number,
-      complement: order.client.complement,
-      city: order.client.city,
-      state: order.client.state,
-      zipCode: order.client.zipCode,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      address: order.client.address,
     });
 
     const product = order.products.map(

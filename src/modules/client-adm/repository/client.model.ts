@@ -1,4 +1,12 @@
-import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import {
+  BelongsTo,
+  Column,
+  ForeignKey,
+  Model,
+  PrimaryKey,
+  Table,
+} from "sequelize-typescript";
+import OrderModel from "../../checkout/repository/order.model";
 
 @Table({
   modelName: "clients-adm-table",

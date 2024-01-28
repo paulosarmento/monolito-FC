@@ -30,7 +30,6 @@ export default class ClientRepository implements ClientGateway {
     if (!client) {
       throw new Error("Client not found");
     }
-
     return new Client({
       id: new Id(client.id),
       name: client.name,

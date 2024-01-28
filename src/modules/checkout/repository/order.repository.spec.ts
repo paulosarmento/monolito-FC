@@ -35,13 +35,7 @@ describe("CheckoutRepository test", () => {
         id: new Id("1c"),
         name: "Client 1",
         email: "Email 1",
-        document: "Document 1",
-        street: "Street 1",
-        number: "Number 1",
-        complement: "Complement 1",
-        city: "City 1",
-        state: "State 1",
-        zipCode: "ZipCode 1",
+        address: "Address 1",
       }),
       products: [
         new Product({
@@ -65,7 +59,6 @@ describe("CheckoutRepository test", () => {
       where: { id: "1o" },
       include: [ClientCheckoutModel, ProductCheckoutModel],
     });
-
     expect(orderModel.toJSON()).toStrictEqual({
       id: order.id.id,
       client: {
@@ -73,15 +66,7 @@ describe("CheckoutRepository test", () => {
         orderId: order.id.id,
         name: order.client.name,
         email: order.client.email,
-        document: order.client.document,
-        street: order.client.street,
-        number: order.client.number,
-        complement: order.client.complement,
-        city: order.client.city,
-        state: order.client.state,
-        zipCode: order.client.zipCode,
-        createdAt: expect.any(Date),
-        updatedAt: expect.any(Date),
+        address: order.client.address,
       },
 
       products: [
@@ -91,8 +76,6 @@ describe("CheckoutRepository test", () => {
           name: order.products[0].name,
           description: order.products[0].description,
           salesPrice: order.products[0].salesPrice,
-          createdAt: expect.any(Date),
-          updatedAt: expect.any(Date),
         },
         {
           id: order.products[1].id.id,
@@ -100,8 +83,6 @@ describe("CheckoutRepository test", () => {
           name: order.products[1].name,
           description: order.products[1].description,
           salesPrice: order.products[1].salesPrice,
-          createdAt: expect.any(Date),
-          updatedAt: expect.any(Date),
         },
       ],
       status: order.status,
@@ -118,15 +99,7 @@ describe("CheckoutRepository test", () => {
             id: "1",
             name: "Client 1",
             email: "email",
-            document: "document",
-            street: "street",
-            number: "number",
-            complement: "complement",
-            city: "city",
-            state: "state",
-            zipCode: "zipCode",
-            createdAt: new Date(),
-            updatedAt: new Date(),
+            address: "Address 1",
           },
         ],
         products: [
@@ -135,16 +108,12 @@ describe("CheckoutRepository test", () => {
             name: "Product 1",
             description: "Description 1",
             salesPrice: 100,
-            createdAt: new Date(),
-            updatedAt: new Date(),
           },
           {
             id: "2p",
             name: "Product 2",
             description: "Description 2",
             salesPrice: 200,
-            createdAt: new Date(),
-            updatedAt: new Date(),
           },
         ],
 
@@ -165,15 +134,7 @@ describe("CheckoutRepository test", () => {
         orderId: order.id.id,
         name: order.client.name,
         email: order.client.email,
-        document: order.client.document,
-        street: order.client.street,
-        number: order.client.number,
-        complement: order.client.complement,
-        city: order.client.city,
-        state: order.client.state,
-        zipCode: order.client.zipCode,
-        createdAt: expect.any(Date),
-        updatedAt: expect.any(Date),
+        address: order.client.address,
       },
 
       products: [
@@ -183,8 +144,6 @@ describe("CheckoutRepository test", () => {
           name: order.products[0].name,
           description: order.products[0].description,
           salesPrice: order.products[0].salesPrice,
-          createdAt: expect.any(Date),
-          updatedAt: expect.any(Date),
         },
         {
           id: order.products[1].id.id,
@@ -192,8 +151,6 @@ describe("CheckoutRepository test", () => {
           name: order.products[1].name,
           description: order.products[1].description,
           salesPrice: order.products[1].salesPrice,
-          createdAt: expect.any(Date),
-          updatedAt: expect.any(Date),
         },
       ],
       status: order.status,

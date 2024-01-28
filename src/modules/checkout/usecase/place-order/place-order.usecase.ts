@@ -51,16 +51,11 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
       id: new Id(client.id),
       name: client.name,
       email: client.email,
-      document: client.document,
-      street: client.street,
-      number: client.number,
-      complement: client.complement,
-      city: client.city,
-      state: client.state,
-      zipCode: client.zipCode,
+      address: client.street,
     });
     // criar o objeto da order (client, products  )
     const myOrder = new Order({
+      id: new Id(input.clientId),
       client: myClient,
       products,
     });
@@ -93,7 +88,7 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
 
     // mudar o status da minha order para approved
     payment.status === "approved" && myOrder.approve();
-    this._repository.addOrder(myOrder);
+    await this._repository.addOrder(myOrder);
 
     // retornar dto
 
@@ -125,7 +120,7 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
   }
 
   private async getProducts(productId: string): Promise<Product> {
-    const product = await this._catalogFacade.find({ id: productId });
+    const product = await this._productFacade.find({ id: productId });
     if (!product) {
       throw new Error("Product not found");
     }
@@ -133,7 +128,7 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
       id: new Id(product.id),
       name: product.name,
       description: product.description,
-      salesPrice: product.salesPrice,
+      salesPrice: product.purchasePrice,
     };
 
     return new Product(productProps);

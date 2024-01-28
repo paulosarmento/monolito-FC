@@ -10,10 +10,10 @@ checkoutRoute.post("/", async (req: Request, res: Response) => {
       clientId: req.body.clientId,
       products: req.body.products,
     };
-
     const output = await checkoutFacade.placeOrder(input);
     res.send(output);
   } catch (err) {
+    console.log(err);
     res.status(500).send(err);
   }
 });

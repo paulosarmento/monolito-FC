@@ -16,10 +16,12 @@ import ProductStoreModel from "../modules/store-catalog/repository/product.model
 import ProductCheckoutModel from "../modules/checkout/repository/product.model";
 import ClientCheckoutModel from "../modules/checkout/repository/client.model";
 import OrderModel from "../modules/checkout/repository/order.model";
+import { storeRoute } from "./routes/storeProduct/store.route";
 
 export const app: Express = express();
 app.use(express.json());
 app.use("/products", productsRoute);
+app.use("/store", storeRoute);
 app.use("/clients", clientsRoute);
 app.use("/checkout", checkoutRoute);
 app.use("/invoice", invoiceRoute);
@@ -34,14 +36,14 @@ async function setupDb() {
   });
   // Entender melhor essa parte....
   sequelize.addModels([
-    ProductAdmModel,
+    ClientCheckoutModel,
     ClientAdmModel,
     InvoiceModel,
     ProductInvoiceModel,
     TransactionModel,
-    ProductStoreModel,
     ProductCheckoutModel,
-    ClientCheckoutModel,
+    ProductStoreModel,
+    ProductAdmModel,
     OrderModel,
   ]);
   migration = migrator(sequelize);

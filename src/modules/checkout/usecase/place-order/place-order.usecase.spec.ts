@@ -81,7 +81,7 @@ describe("PlaceOrderUseCase unit test", () => {
       };
 
       //@ts-expect-error - force set catalogFacade
-      placeOrderUseCase["_catalogFacade"] = mockCatalogFacade;
+      placeOrderUseCase["_productFacade"] = mockCatalogFacade;
 
       await expect(placeOrderUseCase["getProducts"]("0")).rejects.toThrow(
         "Product not found"
@@ -98,14 +98,14 @@ describe("PlaceOrderUseCase unit test", () => {
       };
 
       //@ts-expect-error - force set catalogFacade
-      placeOrderUseCase["_catalogFacade"] = mockCatalogFacade;
+      placeOrderUseCase["_productFacade"] = mockCatalogFacade;
 
       await expect(placeOrderUseCase["getProducts"]("0")).resolves.toEqual(
         new Product({
           id: new Id("0"),
           name: "Product 0",
           description: "Product 0 description",
-          salesPrice: 0,
+          salesPrice: undefined,
         })
       );
       expect(mockCatalogFacade.find).toHaveBeenCalledTimes(1);

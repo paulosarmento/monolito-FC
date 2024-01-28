@@ -20,3 +20,25 @@ productsRoute.post("/", async (req: Request, res: Response) => {
     res.status(500).send(err);
   }
 });
+productsRoute.get("/", async (req: Request, res: Response) => {
+  const useCase = ProductAdmFacadeFactory.create();
+  try {
+    const output = await useCase.findAll();
+    res.send(output);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+productsRoute.get("/:id", async (req: Request, res: Response) => {
+  const useCase = ProductAdmFacadeFactory.create();
+  try {
+    const productDto = {
+      id: req.params.id,
+    };
+
+    const output = await useCase.find(productDto);
+    res.send(output);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
