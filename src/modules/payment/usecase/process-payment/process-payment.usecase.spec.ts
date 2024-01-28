@@ -20,13 +20,11 @@ const transaction2 = new Transaction({
   orderId: "1",
   status: "declined",
 });
-
 const MockRepositoryDeclined = () => {
   return {
     save: jest.fn().mockReturnValue(Promise.resolve(transaction2)),
   };
 };
-
 describe("Transaction usecase unit test", () => {
   it("should approve a transaction", async () => {
     const paymentRepository = MockRepository();
@@ -35,7 +33,6 @@ describe("Transaction usecase unit test", () => {
       amount: 100,
       orderId: "1",
     };
-
     const result = await usecase.execute(input);
 
     expect(result.transactionId).toBe(transaction.id.id);

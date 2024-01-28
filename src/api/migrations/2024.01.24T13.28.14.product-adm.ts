@@ -1,5 +1,3 @@
-// 2024.01.24T16.00.00_create_products_table.ts
-
 import { DataTypes, Sequelize } from "sequelize";
 import { MigrationFn } from "umzug";
 
@@ -14,7 +12,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-
     description: {
       type: DataTypes.STRING(255),
       allowNull: true,
@@ -35,15 +32,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.NUMBER,
       allowNull: true,
     },
-    // orderId: {
-    //   type: DataTypes.STRING(255),
-    //   allowNull: true,
-    //   references: {
-    //     model: "orders",
-    //     key: "id",
-    //   },
-    // },
-
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,

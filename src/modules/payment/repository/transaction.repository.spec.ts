@@ -27,7 +27,6 @@ describe("TransactionRepository test", () => {
       orderId: "1",
     });
     transaction.approve();
-
     const repository = new TransactionRepository();
     const result = await repository.save(transaction);
 

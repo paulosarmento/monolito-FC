@@ -26,4 +26,8 @@ describe("Products e2e", () => {
     expect(response.body.purchasePrice).toBe(100);
     expect(response.body.stock).toBe(10);
   });
+  it("should not create a product", async () => {
+    const response = await request(app).post("/products").send({});
+    expect(response.status).toBe(400);
+  });
 });

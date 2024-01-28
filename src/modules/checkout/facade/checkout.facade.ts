@@ -1,5 +1,4 @@
 import UseCaseInterface from "../../@shared/usecase/use-case.interface";
-import PlaceOrderUseCase from "../usecase/place-order/place-order.usecase";
 import {
   PlaceOrderFacadeInputDto,
   PlaceOrderFacadeOutputDto,
@@ -7,7 +6,7 @@ import {
 import CheckoutFacadeInterface from "./checkout.facade.interface";
 
 export interface UseCaseProps {
-  placeOrderUseCase: PlaceOrderUseCase;
+  placeOrderUseCase: UseCaseInterface;
 }
 
 export default class CheckoutFacade implements CheckoutFacadeInterface {

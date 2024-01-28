@@ -23,9 +23,6 @@ export default class InvoiceRepository implements InvoiceGateway {
     if (!invoice) {
       throw new Error(`Invoice with id ${id} not found`);
     }
-
-    // console.log("Items loaded:", invoice.items);
-
     const result = new Invoice({
       id: new Id(invoice.id),
       name: invoice.name,

@@ -5,7 +5,6 @@ import { migrator } from "../config-migrations/migrator";
 
 describe("Clients e2e", () => {
   let migration: Umzug<any>;
-  // Entender melhor essa parte
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;
@@ -36,5 +35,9 @@ describe("Clients e2e", () => {
     expect(response.body.city).toBe("city");
     expect(response.body.state).toBe("state");
     expect(response.body.zipCode).toBe("zipCode");
+  });
+  it("Should not create a new client", async () => {
+    const response = await request(app).post("/clients").send({});
+    expect(response.status).toBe(400);
   });
 });

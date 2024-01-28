@@ -3,7 +3,6 @@ import CheckoutFacadeFactory from "../../../modules/checkout/factory/facade.fact
 export const checkoutRoute = express.Router();
 
 checkoutRoute.post("/", async (req: Request, res: Response) => {
-  // Entender melhor essa parte ...
   try {
     const checkoutFacade = CheckoutFacadeFactory.create();
     const input = {
@@ -13,7 +12,6 @@ checkoutRoute.post("/", async (req: Request, res: Response) => {
     const output = await checkoutFacade.placeOrder(input);
     res.send(output);
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 });

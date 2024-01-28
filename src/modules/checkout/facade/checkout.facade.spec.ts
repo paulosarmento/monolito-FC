@@ -91,4 +91,20 @@ describe("CheckoutFacade test", () => {
     expect(result.products[0].productId).toEqual("1p");
     expect(result.products[1].productId).toEqual("2p");
   });
+  it("should not be able to place an order", async () => {
+    const facadeCheckout = CheckoutFacadeFactory.create();
+    await expect(
+      facadeCheckout.placeOrder({
+        clientId: "1p",
+        products: [
+          {
+            productId: "1p",
+          },
+          {
+            productId: "2p",
+          },
+        ],
+      })
+    ).rejects.toThrow("Client not found");
+  });
 });

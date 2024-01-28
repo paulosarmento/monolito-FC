@@ -8,7 +8,6 @@ import OrderRepository from "../repository/order.repository";
 import PlaceOrderUseCase from "../usecase/place-order/place-order.usecase";
 
 export default class CheckoutFacadeFactory {
-  // Entender melhor essa parte
   static create() {
     const clientFactory = ClientAdmFacadeFactory.create();
     const catalogFactory = StoreCatalogFacadeFactory.create();
@@ -16,7 +15,6 @@ export default class CheckoutFacadeFactory {
     const checkoutRepository = new OrderRepository();
     const invoiceRepository = InvoiceFacadeFactory.create();
     const paymentFactory = PaymentFacadeFactory.create();
-
     const placeOrderUseCase = new PlaceOrderUseCase(
       clientFactory,
       productFactory,
@@ -25,7 +23,6 @@ export default class CheckoutFacadeFactory {
       invoiceRepository,
       paymentFactory
     );
-
     const checkoutFacade = new CheckoutFacade({
       placeOrderUseCase: placeOrderUseCase,
     });

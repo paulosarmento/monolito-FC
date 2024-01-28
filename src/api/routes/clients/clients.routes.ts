@@ -5,6 +5,27 @@ export const clientsRoute = express.Router();
 clientsRoute.post("/", async (req: Request, res: Response) => {
   const useCase = ClientAdmFacadeFactory.create();
   try {
+    const requiredFields = [
+      "name",
+      "email",
+      "document",
+      "street",
+      "number",
+      "city",
+      "state",
+      "zipCode",
+    ];
+
+    const missingFields = requiredFields.filter(
+      (field) => !req.body.hasOwnProperty(field)
+    );
+
+    if (missingFields.length > 0) {
+      return res.status(400).send({
+        error: `Missing required fields: ${missingFields.join(", ")}`,
+      });
+    }
+
     const clientDto = {
       id: req.body.id,
       name: req.body.name,

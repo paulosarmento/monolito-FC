@@ -23,7 +23,6 @@ export default class ProductAdmRepository implements ProductGateway {
     if (!product) {
       throw new Error(`Product with id ${id} not found`);
     }
-    // console.log(product);
     return new Product({
       id: new Id(product.id),
       name: product.name,

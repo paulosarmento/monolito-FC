@@ -11,7 +11,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-
     price: {
       type: DataTypes.NUMBER,
       allowNull: true,

@@ -1,5 +1,3 @@
-// 2024.01.24T17.15.00_create_transaction_table.ts
-
 import { DataTypes, Sequelize } from "sequelize";
 import { MigrationFn } from "umzug";
 

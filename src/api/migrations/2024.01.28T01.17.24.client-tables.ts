@@ -16,12 +16,10 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-
     address: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-
     orderId: {
       type: DataTypes.STRING(255),
       allowNull: true,
@@ -32,7 +30,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
     },
   });
 };
-
 export const down: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
   await sequelize.getQueryInterface().dropTable("client");
 };

@@ -1,5 +1,3 @@
-// 2024.01.24T17.30.00_create_invoice_and_product_invoice_tables.ts
-
 import { DataTypes, Sequelize } from "sequelize";
 import { MigrationFn } from "umzug";
 
@@ -54,9 +52,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
 };
 
 export const down: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
-  // Remoção da tabela 'products'
   await sequelize.getQueryInterface().dropTable("invoice-products");
-
-  // Remoção da tabela 'invoices'
   await sequelize.getQueryInterface().dropTable("invoices");
 };

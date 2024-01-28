@@ -11,11 +11,6 @@ type TransactionProps = {
   updatedAt?: Date;
 };
 
-// export class TransactionId extends Id {
-//   constructor(id: string) {
-//     super(id);
-//   }
-// }
 export default class Transaction extends BaseEntity implements AggregateRoot {
   private _amount: number;
   private _orderId: string;
@@ -33,15 +28,12 @@ export default class Transaction extends BaseEntity implements AggregateRoot {
       throw new Error("Amount must be greater than 0");
     }
   }
-
   approve(): void {
     this._status = "approved";
   }
-
   decline(): void {
     this._status = "declined";
   }
-
   process(): void {
     if (this._amount >= 100) {
       this.approve();
@@ -53,11 +45,9 @@ export default class Transaction extends BaseEntity implements AggregateRoot {
   get amount(): number {
     return this._amount;
   }
-
   get orderId(): string {
     return this._orderId;
   }
-
   get status(): string {
     return this._status;
   }

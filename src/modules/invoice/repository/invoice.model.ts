@@ -4,7 +4,6 @@ import {
   PrimaryKey,
   Table,
   HasMany,
-  BelongsTo,
 } from "sequelize-typescript";
 import ProductInvoiceModel from "./product.model";
 

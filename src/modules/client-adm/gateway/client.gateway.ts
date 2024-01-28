@@ -1,8 +1,6 @@
-import { RepositoryClientInterface } from "../../@shared/repository/repository-interface";
 import Client from "../domain/client.entity";
 
-export default interface ClientGateway
-  extends RepositoryClientInterface<Client> {
+export default interface ClientGateway {
   addClient(client: Client): Promise<void>;
   find(id: string): Promise<Client>;
 }

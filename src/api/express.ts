@@ -21,10 +21,10 @@ import { storeRoute } from "./routes/storeProduct/store.route";
 export const app: Express = express();
 app.use(express.json());
 app.use("/products", productsRoute);
-app.use("/store", storeRoute);
+app.use("/invoice", invoiceRoute);
 app.use("/clients", clientsRoute);
 app.use("/checkout", checkoutRoute);
-app.use("/invoice", invoiceRoute);
+app.use("/store", storeRoute);
 
 export let sequelize: Sequelize;
 export let migration: Umzug<any>;
@@ -34,7 +34,6 @@ async function setupDb() {
     storage: join(__dirname, "../../database.sqlite"),
     logging: false,
   });
-  // Entender melhor essa parte....
   sequelize.addModels([
     ClientCheckoutModel,
     ClientAdmModel,

@@ -22,9 +22,6 @@ describe("PaymentFacade test", () => {
     await sequelize.close();
   });
   it("Should create a transaction", async () => {
-    // const transactionRepository = new TransactionRepository();
-    // const useCase = new ProcessPaymentUseCase(transactionRepository);
-    // const facade = new PaymentFacade(useCase);
     const facade = PaymentFacadeFactory.create();
     const input = {
       orderId: "1",

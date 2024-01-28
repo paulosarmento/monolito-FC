@@ -22,7 +22,7 @@ const MockRepository = () => {
   };
 };
 
-describe("Find Client Usecase unit test", () => {
+describe("Find Client UseCase unit test", () => {
   it("should find a client", async () => {
     const clientRepository = MockRepository();
     const useCase = new FindClientUseCase(clientRepository);

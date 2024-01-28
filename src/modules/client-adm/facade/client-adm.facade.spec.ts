@@ -56,14 +56,6 @@ describe("ClientAdmFacade test", () => {
   });
 
   it("Should find a client", async () => {
-    // const clientRepository = new ClientRepository();
-    // const findUseCase = new FindClientUseCase(clientRepository);
-    // const addUseCase = new AddClientUseCase(clientRepository);
-
-    // const facade = new ClientAdmFacade({
-    //   addUseCase: addUseCase,
-    //   findUseCase: findUseCase,
-    // });
     const facade = ClientAdmFacadeFactory.create();
     const input = {
       id: "1",

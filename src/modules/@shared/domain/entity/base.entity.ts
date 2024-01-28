@@ -14,15 +14,12 @@ export default class BaseEntity {
   get id(): Id {
     return this._id;
   }
-
   get createdAt(): Date {
     return this._createdAt;
   }
-
   get updatedAt(): Date {
     return this._updatedAt;
   }
-
   set updatedAt(updatedAt: Date) {
     this._updatedAt = updatedAt;
   }

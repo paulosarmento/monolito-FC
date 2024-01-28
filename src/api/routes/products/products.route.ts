@@ -8,6 +8,18 @@ export const productsRoute = express.Router();
 productsRoute.post("/", async (req: Request, res: Response) => {
   const useCase = ProductAdmFacadeFactory.create();
   try {
+    const requiredFields = ["name", "description", "purchasePrice", "stock"];
+
+    const missingFields = requiredFields.filter(
+      (field) => !req.body.hasOwnProperty(field)
+    );
+
+    if (missingFields.length > 0) {
+      return res.status(400).send({
+        error: `Missing required fields: ${missingFields.join(", ")}`,
+      });
+    }
+
     const productDto = {
       name: req.body.name,
       description: req.body.description,
