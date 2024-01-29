@@ -31,7 +31,7 @@ export let migration: Umzug<any>;
 async function setupDb() {
   sequelize = new Sequelize({
     dialect: "sqlite",
-    storage: join(__dirname, "../../database.sqlite"),
+    storage: ":memory:",
     logging: false,
   });
   sequelize.addModels([

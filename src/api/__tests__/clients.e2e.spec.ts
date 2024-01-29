@@ -1,10 +1,26 @@
 import { Umzug } from "umzug";
-import { app, sequelize } from "../express";
+import { app } from "../express";
 import request from "supertest";
 import { migrator } from "../config-migrations/migrator";
+import { ClientAdmModel } from "../../modules/client-adm/repository/client.model";
+import { Sequelize } from "sequelize-typescript";
 
 describe("Clients e2e", () => {
+  let sequelize: Sequelize;
+
   let migration: Umzug<any>;
+  beforeEach(async () => {
+    sequelize = new Sequelize({
+      dialect: "sqlite",
+      storage: ":memory:",
+      logging: false,
+    });
+
+    sequelize.addModels([ClientAdmModel]);
+    migration = migrator(sequelize);
+    await migration.up();
+  });
+
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;

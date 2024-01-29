@@ -1,10 +1,27 @@
 import { Umzug } from "umzug";
-import { app, sequelize } from "../express";
+import { app } from "../express";
 import request from "supertest";
 import { migrator } from "../config-migrations/migrator";
+import InvoiceModel from "../../modules/invoice/repository/invoice.model";
+import ProductInvoiceModel from "../../modules/invoice/repository/product.model";
+import { Sequelize } from "sequelize-typescript";
 
 describe("Invoice e2e", () => {
+  let sequelize: Sequelize;
+
   let migration: Umzug<any>;
+  beforeEach(async () => {
+    sequelize = new Sequelize({
+      dialect: "sqlite",
+      storage: ":memory:",
+      logging: false,
+    });
+
+    sequelize.addModels([InvoiceModel, ProductInvoiceModel]);
+    migration = migrator(sequelize);
+    await migration.up();
+  });
+
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;

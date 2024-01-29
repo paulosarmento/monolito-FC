@@ -23,7 +23,7 @@ GET http://localhost:3000/products
 ###
 GET http://localhost:3000/store
 ###
-@productId = bfa23084-4bc6-4308-9b01-f08df28cff8d
+@productId = c3a01200-328c-4f5a-943f-67da7bc71ce7
 ###
 GET http://localhost:3000/products/{{productId}}
 ###
@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-@clientId = df5a9aa2-e7cc-453d-8817-e8440f4b3be6
+@clientId = deafd6fb-4a37-47d0-9f3d-961d0d693470
 ###
 GET http://localhost:3000/clients/{{clientId}}
 
@@ -94,7 +94,7 @@ Content-Type: application/json
   
 }
 ###
-@invoiceId = 220e91c8-5d87-4110-b17b-1e650f7177b3
+@invoiceId = 941636d9-164b-40d5-9db8-f4a288c61060
 ###
 GET http://localhost:3000/invoice/{{invoiceId}}
 

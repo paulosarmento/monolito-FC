@@ -1,10 +1,26 @@
 import { Umzug } from "umzug";
-import { app, sequelize } from "../express";
+import { app } from "../express";
 import request from "supertest";
 import { migrator } from "../config-migrations/migrator";
+import { ProductAdmModel } from "../../modules/product-adm/repository/product.model";
+import { Sequelize } from "sequelize-typescript";
 
 describe("Products e2e", () => {
+  let sequelize: Sequelize;
+
   let migration: Umzug<any>;
+  beforeEach(async () => {
+    sequelize = new Sequelize({
+      dialect: "sqlite",
+      storage: ":memory:",
+      logging: false,
+    });
+
+    sequelize.addModels([ProductAdmModel]);
+    migration = migrator(sequelize);
+    await migration.up();
+  });
+
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;

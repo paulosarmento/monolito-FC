@@ -1,10 +1,44 @@
 import { Umzug } from "umzug";
 import { migrator } from "../config-migrations/migrator";
-import { app, sequelize } from "../express";
+import { app } from "../express";
 import request from "supertest";
+import ClientCheckoutModel from "../../modules/checkout/repository/client.model";
+import { ClientAdmModel } from "../../modules/client-adm/repository/client.model";
+import InvoiceModel from "../../modules/invoice/repository/invoice.model";
+import ProductInvoiceModel from "../../modules/invoice/repository/product.model";
+import TransactionModel from "../../modules/payment/repository/transaction.model";
+import ProductCheckoutModel from "../../modules/checkout/repository/product.model";
+import ProductStoreModel from "../../modules/store-catalog/repository/product.model";
+import { ProductAdmModel } from "../../modules/product-adm/repository/product.model";
+import OrderModel from "../../modules/checkout/repository/order.model";
+import { Sequelize } from "sequelize-typescript";
 
 describe("Checkout e2e", () => {
+  let sequelize: Sequelize;
+
   let migration: Umzug<any>;
+  beforeEach(async () => {
+    sequelize = new Sequelize({
+      dialect: "sqlite",
+      storage: ":memory:",
+      logging: false,
+    });
+
+    sequelize.addModels([
+      ClientCheckoutModel,
+      ClientAdmModel,
+      InvoiceModel,
+      ProductInvoiceModel,
+      TransactionModel,
+      ProductCheckoutModel,
+      ProductStoreModel,
+      ProductAdmModel,
+      OrderModel,
+    ]);
+    migration = migrator(sequelize);
+    await migration.up();
+  });
+
   afterEach(async () => {
     if (!migration || !sequelize) {
       return;
